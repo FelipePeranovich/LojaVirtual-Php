@@ -1,0 +1,137 @@
+/* Estilo para o body */
+body {
+    font-family: Arial, sans-serif;
+}
+
+/* Estilo para a navbar (cor fundo) */
+.navbar {
+    background-color: rgba(11, 47, 88, 0.95); /* azul */
+    background: linear-gradient(to bottom, rgba(11, 47, 88, 0.95), rgba(11, 47, 88, 0.75)); 
+}
+
+/* Estilo textos do navbar (cor menus)*/
+.navbar-brand,
+.navbar-nav .nav-link {
+    color: #ffffffaf; /* branco */
+    &:hover {
+        color: #fff; /* mais claro quando passa o mouse */
+        transition: color 0.5s ease; 
+        text-shadow: 0px 0px 8px #fff;
+    }
+}
+
+/* Sombra em volta da logo*/
+.navbar-brand :hover{
+
+    box-shadow: 0 0 10px 5px #fff;
+    border-radius: 100px;
+    
+}
+
+#ativo{
+    color: #fff;
+    text-shadow: 0px 0px 8px #fff ;
+}
+
+
+.navbar-toggler-icon {
+    color: #fff; /* branco */
+}
+
+/* Estilo para o botão de pesquisa na navbar */
+.navbar-form .form-control {
+    border-color: rgba(11, 47, 88, 0.95); 
+}
+
+.navbar-form .btn {
+    border-color: #fff; /* branco */
+}
+
+/* Estilo para o botão de login */
+.btn-login {
+    border-radius: 20px;
+    &:hover {
+        background-color: rgba(11, 47, 88, 0.95)7bff; /* mais claro quando passa o mouse */
+    }
+}
+
+/* Estilo para o carrossel */
+.carousel-item {
+    text-align: center;
+}
+/* Estilo para as imagens no carrossel */
+.carousel-item img {
+    max-height: 600px; /* Defina a altura máxima desejada */
+    max-width: 60%; /* Isso garantirá que a largura seja ajustada automaticamente para manter a proporção */
+    margin: 0 auto; /* Centralizar a imagem horizontalmente */
+}
+
+/*
+.carousel-caption {
+    
+}*/
+
+.carousel-caption h5 {
+    color: #000; /* branco */
+}
+
+.carousel-caption button {
+    border-radius: 20px;
+}
+
+#btn-prox:hover{
+    background-color:#8484841f;
+}
+
+#btn-anterior:hover{
+    background-color:#8484841f;
+}
+
+/*Botao carrinho*/
+
+#btn-addcarrinho{
+    border-color: rgba(11, 47, 88, 0.95); ;
+    background-color: rgba(11, 47, 88, 0.95); 
+}
+
+
+
+
+/* Estilo para o modal de login */
+.modal-header {
+    background-color: rgba(11, 47, 88, 0.95)7bff; /* azul */
+    color: #fff; /* branco */
+}
+
+.modal-content {
+    border-radius: 20px;
+}
+
+.modal-body {
+    text-align: center;
+}
+
+.modal-body a {
+    color: rgba(11, 47, 88, 0.95)7bff; /* azul */
+}
+.navbar-form {
+    margin-left: auto; /* Empurra o formulário para a direita */
+}
+/* Estilo para os itens de navegação na navbar */
+.navbar-nav {
+    width: 100%;
+}
+
+.navbar-nav .nav-item {
+    flex: 1; /* Faz com que os itens ocupem toda a largura disponível */
+    text-align: center; /* Centraliza o texto dentro dos itens de navegação */
+    
+}
+
+/*Estilo botao tela login*/
+
+#btn-entrar{
+    border-color: rgba(11, 47, 88, 0.95); ;
+    background-color: rgba(11, 47, 88, 0.95);    
+}
+
