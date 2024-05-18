@@ -25,10 +25,10 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" href="../telas/chuteira.php">Chuteiras</a>
+        <a class="nav-link" href="../telas/chuteira.php" >Chuteiras</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="../telas/bolas.php">Bolas</a>
+        <a class="nav-link" href="../telas/bolas.php"id="ativo">Bolas</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="../telas/camisas.php">Camisas</a>
@@ -37,13 +37,13 @@
         <a class="nav-link" href="../telas/conjuntos.php">Conjunto</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="../telas/acessorios.php"id="ativo">Acessórios</a>
+        <a class="nav-link" href="../telas/acessorios.php">Acessórios</a>
       </li>
     </ul>
     
   </div>
-  <form class="form-inline my-2 my-lg-0 navbar-form">
   <a class="navbar-brand" href="carrinho.php"><img class="d-inline-block align-top" width="30" height="30" src="../imagens/carrinho.png" alt="carrinho">Carrinho</a>
+  <form class="form-inline my-2 my-lg-0 navbar-form">
       <input class="form-control mr-sm-2" type="search" placeholder="Pesquisar" aria-label="Search">
       <button class="btn btn-outline-light my-2 my-sm-0 ml-2" type="submit">Pesquisar</button>
     </form>

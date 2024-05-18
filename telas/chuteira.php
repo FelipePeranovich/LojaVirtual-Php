@@ -6,6 +6,8 @@
   <title>AtletaShop</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <link rel="stylesheet" href="../estilo/styles.css">
+  <link rel="stylesheet" href="../estilo/login.css">
+  <link rel="stylesheet" href="../estilo/chuteira.css">
   <!-- JavaScript -->
 <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
@@ -41,10 +43,66 @@
     </ul>
     
   </div>
+  <a class="navbar-brand" href="carrinho.php"><img class="d-inline-block align-top" width="30" height="30" src="../imagens/carrinho.png" alt="carrinho">Carrinho</a>
   <form class="form-inline my-2 my-lg-0 navbar-form">
       <input class="form-control mr-sm-2" type="search" placeholder="Pesquisar" aria-label="Search">
       <button class="btn btn-outline-light my-2 my-sm-0 ml-2" type="submit">Pesquisar</button>
     </form>
-    <a class="nav-link" href="#"><i class="fal fa-shopping-cart"></i></a>
-    <button class="btn btn-outline-light my-2 my-sm-0 ml-2">Login</button>
+    <button id="btnlogin" class="btn btn-outline-light my-2 my-sm-0 ml-2">Login</button>
 </nav>
+</nav>
+
+    <div class="vitrine-item" id="img-produto">
+      <img  src="../imagens/chuteira1.jpg" alt="">
+        <h5>Chuteira</h5>
+        <button class="btn btn-primary" id="btn-addcarrinho">Adicionar ao Carrinho</button>
+    </div>
+    
+
+<!-- Login Form -->
+<div class="modal" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="loginModalLabel">Login</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="loginModalLabel">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Endereço de email:</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Seu email">
+          </div>
+          <div class="form-group">
+            <label>Senha:</label>
+            <input type="password" class="form-control" name="pass" placeholder="Senha">
+          </div>
+          <button type="submit" class="btn btn-primary">Entrar</button>
+        </form>
+        <p class="mt-3">Esqueceu sua senha? <a href="#" >Clique aqui</a></p>
+        <p>ou</p>
+        <p class="mt-3">Não tem cadastro? <a href="#" >Crie sua conta</a></p>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Srcript Tela Modal Login -->
+ <script>
+  var modal = document.getElementById("loginModal");
+  var btn = document.getElementById("btnlogin");
+  var span = document.getElementsByClassName("close")[0];
+    btn.onclick = function() {
+      modal.style.display = "block";
+    }
+    span.onclick = function() {
+      modal.style.display = "none";
+    }
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+ </script>
+</body>

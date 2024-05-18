@@ -6,12 +6,13 @@
   <title>AtletaShop</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <link rel="stylesheet" href="../estilo/styles.css">
+  <link rel="stylesheet" href="../estilo/login.css">
+  <link rel="stylesheet" href="../estilo/home.css">
   <!-- JavaScript -->
 <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<script scr=login.js></script>
 </head>
 <body>
 
@@ -39,15 +40,15 @@
       <li class="nav-item">
         <a class="nav-link" href="../telas/acessorios.php">Acessórios</a>
       </li>
-    </ul>
-    
+    </ul> 
   </div>
-  <form class="form-inline my-2 my-lg-0 navbar-form">
+  <a class="navbar-brand" href="carrinho.php"><img class="d-inline-block align-top" width="30" height="30" src="../imagens/carrinho.png" alt="carrinho">Carrinho</a>
+    <form class="form-inline my-2 my-lg-0 navbar-form">
       <input class="form-control mr-sm-2" type="search" placeholder="Pesquisar" aria-label="Search">
       <button class="btn btn-outline-light my-2 my-sm-0 ml-2" type="submit">Pesquisar</button>
     </form>
-    <a href="../telas/carrinho.php" class="btn-carrinho"><img scr="../imagens/carrinho.png"></a>
     <button id="btnlogin" class="btn btn-outline-light my-2 my-sm-0 ml-2">Login</button>
+    
 </nav>
 
 <!-- Carousel -->
@@ -113,90 +114,27 @@
           <button type="submit" class="btn btn-primary">Entrar</button>
         </form>
         <p class="mt-3">Esqueceu sua senha? <a href="#" >Clique aqui</a></p>
+        <p>ou</p>
+        <p class="mt-3">Não tem cadastro? <a href="#" >Crie sua conta</a></p>
       </div>
     </div>
   </div>
 </div>
-
-<!--Tela de Login -->
-<style>
-body {font-family: Arial, Helvetica, sans-serif;}
-/* The Modal (background) */
-.modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  padding-top: 100px; /* Location of the box */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}
-.modal-content {
-  position: relative;
-  background-color: #fefefe;
-  margin: auto;
-  padding: 0;
-  border: 1px solid #888;
-  width: 80%;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
-  -webkit-animation-name: animatetop;
-  -webkit-animation-duration: 0.4s;
-  animation-name: animatetop;
-  animation-duration: 0.4s
-}
-@-webkit-keyframes animatetop {
-  from {top:-300px; opacity:0} 
-  to {top:0; opacity:1}
-}
-@keyframes animatetop {
-  from {top:-300px; opacity:0}
-  to {top:0; opacity:1}
-}
-.close {
-  color: white;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
-.close:hover,
-.close:focus {
-  color: #fff;
-  text-decoration: none;
-  cursor: pointer;
-}
-.modal-header {
-  padding: 2px 16px;
-  background-color:rgba(11, 47, 88, 0.95);
-  color: white;
-}
-.modal-body {padding: 2px 16px;}
-.modal-footer {
-  padding: 2px 16px;
-  background-color: rgba(11, 47, 88, 0.95);
-  color: white;
-}
-</style>
 <!-- Srcript Tela Modal Login -->
-<script>
-var modal = document.getElementById("loginModal");
-var btn = document.getElementById("btnlogin");
-var span = document.getElementsByClassName("close")[0];
-btn.onclick = function() {
-  modal.style.display = "block";
-}
-span.onclick = function() {
-  modal.style.display = "none";
-}
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-}
-</script>
-</head>
-<body>
-
+ <script>
+  var modal = document.getElementById("loginModal");
+  var btn = document.getElementById("btnlogin");
+  var span = document.getElementsByClassName("close")[0];
+    btn.onclick = function() {
+      modal.style.display = "block";
+    }
+    span.onclick = function() {
+      modal.style.display = "none";
+    }
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+ </script>
+</body>

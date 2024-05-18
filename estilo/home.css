@@ -55,7 +55,62 @@ body {
     }
 }
 
+/* Estilo para o carrossel */
+.carousel-item {
+    text-align: center;
+}
+/* Estilo para as imagens no carrossel */
+.carousel-item img {
+    max-height: 600px; /* Defina a altura máxima desejada */
+    max-width: 60%; /* Isso garantirá que a largura seja ajustada automaticamente para manter a proporção */
+    margin: 0 auto; /* Centralizar a imagem horizontalmente */
+}
 
+/*
+.carousel-caption {
+    
+}*/
+
+.carousel-caption h5 {
+    color: #000; /* branco */
+}
+
+.carousel-caption button {
+    border-radius: 20px;
+}
+
+#btn-prox:hover{
+    background-color:#8484841f;
+}
+
+#btn-anterior:hover{
+    background-color:#8484841f;
+}
+
+/*Botao carrinho*/
+
+#btn-addcarrinho{
+    border-color: rgba(11, 47, 88, 0.95); ;
+    background-color: rgba(11, 47, 88, 0.95); 
+}
+
+/* Estilo para o modal de login */
+.modal-header {
+    background-color: rgba(11, 47, 88, 0.95)7bff; /* azul */
+    color: #fff; /* branco */
+}
+
+.modal-content {
+    border-radius: 20px;
+}
+
+.modal-body {
+    text-align: center;
+}
+
+.modal-body a {
+    color: rgba(11, 47, 88, 0.95)7bff; /* azul */
+}
 .navbar-form {
     margin-left: auto; /* Empurra o formulário para a direita */
 }
