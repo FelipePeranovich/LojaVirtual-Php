@@ -10,7 +10,7 @@ body {
 }
 
 /* Estilo textos do navbar (cor menus)*/
-.navbar-brand,
+#img-logo,
 .navbar-nav .nav-link {
     color: #ffffffaf; /* branco */
     &:hover {
@@ -21,7 +21,7 @@ body {
 }
 
 /* Sombra em volta da logo*/
-.navbar-brand :hover{
+#img-logo :hover{
 
     box-shadow: 0 0 10px 5px #fff;
     border-radius: 100px;

@@ -8,7 +8,7 @@
 function conectar(){
     $user ='root';
     $pass ="";
-    $dns="mysql:host=localhost;dbname=escola";
+    $dns="mysql:host=localhost;dbname=atletashop";
     $connection = new PDO($dns,$user,$pass);
     $connection->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
     return $connection;
