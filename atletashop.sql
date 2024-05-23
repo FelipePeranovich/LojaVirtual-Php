@@ -1,21 +1,21 @@
-/* Lógico_bd: */
+/* der_atletashop: */
 
 CREATE TABLE Clientes (
     id_cliente int(11) PRIMARY KEY,
     nm_cliente varchar(255),
-    cpf_cliente int(11),
-    telefone int(11),
-    cep int(10),
+    cpf_cliente varchar(11),
+    telefone varchar(11),
+    cep varchar(8),
     nro int(11),
     email_cliente varchar(255),
     senha_cliente varchar(16)
 );
 
 CREATE TABLE Produtos (
-    id_produto int(11) PRIMARY KEY,
     ds_produto varchar(255),
     valor_prod float(10,2),
     nm_produto varchar(255),
+    id_produto int(11) PRIMARY KEY,
     fk_Categorias_id_categoria int(11),
     fk_Fornecedor_id_fornecedor int(11)
 );
@@ -49,20 +49,20 @@ CREATE TABLE Compra (
 CREATE TABLE Transportadora (
     id_transportadora int(11) PRIMARY KEY,
     nm_transportadora varchar(255),
-    cnpj_transportadora int(14),
-    cep_transportadora int(10),
+    cnpj_transportadora varchar(15),
+    cep_transportadora varchar(8),
     nro_transportadora int(11),
-    telefone_transportadora int(11)
+    telefone_transportadora varchar(11)
 );
 
 CREATE TABLE Fornecedor (
     id_fornecedor int(11) PRIMARY KEY,
     nm_fornecedor varchar(255),
-    cnpj_fornecedor int(14),
-    atividade_fornecedor varchar(255),
-    cep_fornecedor int(10),
+    cnpj_fornecedor varchar(15),
+    atividade_fornecedor varchar(50),
+    cep_fornecedor varchar(8),
     nro_fornecedor int(11),
-    telefone_fornecedor int(11)
+    telefone_fornecedor varchar(11)
 );
 
 CREATE TABLE tamanho (
