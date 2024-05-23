@@ -1,4 +1,4 @@
-/* Lógico_1: */
+/* Lógico_bd: */
 
 CREATE TABLE Clientes (
     id_cliente int(11) PRIMARY KEY,
@@ -15,23 +15,14 @@ CREATE TABLE Produtos (
     id_produto int(11) PRIMARY KEY,
     ds_produto varchar(255),
     valor_prod float(10,2),
-    qtd_produto int(11),
     nm_produto varchar(255),
-    tamanho_prod varchar(10),
     fk_Categorias_id_categoria int(11),
-    fk_Unidade_Medida_id_um int(11),
     fk_Fornecedor_id_fornecedor int(11)
 );
 
 CREATE TABLE Categorias (
     id_categoria int(11) PRIMARY KEY,
     nm_categoria varchar(255)
-);
-
-CREATE TABLE Unidade_Medida (
-    id_um int(11) PRIMARY KEY,
-    ds_um varchar(255),
-    sg_um char(2)
 );
 
 CREATE TABLE Imagem (
@@ -74,6 +65,12 @@ CREATE TABLE Fornecedor (
     telefone_fornecedor int(11)
 );
 
+CREATE TABLE tamanho (
+    tamanho_produto varchar(20),
+    qtd_tamanho int(11),
+    fk_Produtos_id_produto int(11)
+);
+
 CREATE TABLE ItemCompra (
     fk_Produtos_id_produto int(11),
     fk_Compra_id_compra int(11),
@@ -87,11 +84,6 @@ ALTER TABLE Produtos ADD CONSTRAINT FK_Produtos_2
     ON DELETE CASCADE;
  
 ALTER TABLE Produtos ADD CONSTRAINT FK_Produtos_3
-    FOREIGN KEY (fk_Unidade_Medida_id_um)
-    REFERENCES Unidade_Medida (id_um)
-    ON DELETE RESTRICT;
- 
-ALTER TABLE Produtos ADD CONSTRAINT FK_Produtos_4
     FOREIGN KEY (fk_Fornecedor_id_fornecedor)
     REFERENCES Fornecedor (id_fornecedor)
     ON DELETE CASCADE;
@@ -114,6 +106,11 @@ ALTER TABLE Compra ADD CONSTRAINT FK_Compra_3
 ALTER TABLE Compra ADD CONSTRAINT FK_Compra_4
     FOREIGN KEY (fk_Vendedor_id_vendedor)
     REFERENCES Vendedor (id_vendedor)
+    ON DELETE CASCADE;
+ 
+ALTER TABLE tamanho ADD CONSTRAINT FK_tamanho_1
+    FOREIGN KEY (fk_Produtos_id_produto)
+    REFERENCES Produtos (id_produto)
     ON DELETE CASCADE;
  
 ALTER TABLE ItemCompra ADD CONSTRAINT FK_ItemCompra_1

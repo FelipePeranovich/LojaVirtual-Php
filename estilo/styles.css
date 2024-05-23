@@ -10,7 +10,7 @@ body {
 }
 
 /* Estilo textos do navbar (cor menus)*/
-#img-logo,
+.navbar-brand,
 .navbar-nav .nav-link {
     color: #ffffffaf; /* branco */
     &:hover {
@@ -21,7 +21,7 @@ body {
 }
 
 /* Sombra em volta da logo*/
-#img-logo :hover{
+.navbar-brand :hover{
 
     box-shadow: 0 0 10px 5px #fff;
     border-radius: 100px;
@@ -77,3 +77,27 @@ body {
     background-color: rgba(11, 47, 88, 0.95);    
 }
 
+/*Estilo carrinho*/
+
+.navbar-carrinho{
+    padding: 25px;
+}
+
+
+/* Estilo para o modal de login */
+.modal-header {
+    background-color: rgba(11, 47, 88, 0.95)7bff; /* azul */
+    color: #fff; /* branco */
+}
+
+.modal-content {
+    border-radius: 20px;
+}
+
+.modal-body {
+    text-align: center;
+}
+
+.modal-body a {
+    color: rgba(11, 47, 88, 0.95)7bff; /* azul */
+}

@@ -43,7 +43,7 @@
     
   </div>
   <form class="form-inline my-2 my-lg-0 navbar-form">
-  <a class="navbar-brand" href="carrinho.php"><img class="d-inline-block align-top" width="30" height="30" src="../imagens/carrinho.png" alt="carrinho">Carrinho</a>
+  <a class="navbar-carrinho" href="carrinho.php"><img class="d-inline-block align-top" width="30" height="30" src="../imagens/carrinho.png" alt="carrinho"></a>
       <input class="form-control mr-sm-2" type="search" placeholder="Pesquisar" aria-label="Search">
       <button class="btn btn-outline-light my-2 my-sm-0 ml-2" type="submit">Pesquisar</button>
     </form>
@@ -61,7 +61,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <form>
+        <form action="../funcoes/login.php" method="post">
           <div class="form-group">
             <label for="exampleInputEmail1">Endereço de email:</label>
             <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Seu email">
