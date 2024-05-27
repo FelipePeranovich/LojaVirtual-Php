@@ -106,7 +106,7 @@
         <form action="../funcoes/login.php" method="post">
           <div class="form-group">
             <label for="exampleInputEmail1">Endereço de email:</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Seu email">
+            <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Seu email">
           </div>
           <div class="form-group">
             <label>Senha:</label>

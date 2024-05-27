@@ -5,11 +5,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Scripting/EmptyPHP.php to edit this template
  */
 
-function conectar(){
+ function conectar(){
     $user ='root';
     $pass ="";
-    $dns="mysql:host=localhost;dbname=atletashop";
-    $connection = new PDO($dns,$user,$pass);
-    $connection->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+    $dsn= "mysql:host=localhost;dbname=atletashop";
+    $connection = "";
+    try{
+        $connection = new PDO($dsn,$user,$pass);
+        $connection->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+    }
+    catch (PDOException $e){
+        echo erros($e);
+        
+    }
     return $connection;
 }

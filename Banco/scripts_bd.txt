@@ -10,7 +10,7 @@ CREATE TABLE Clientes (
     cep varchar(8),
     nro int(11),
     email_cliente varchar(255),
-    senha_cliente varchar(16)
+    senha_cliente varchar(255)
 );
 
 CREATE TABLE Produtos (
