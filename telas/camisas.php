@@ -72,9 +72,7 @@
           </div>
           <button type="submit" class="btn btn-primary">Entrar</button>
         </form>
-        <p class="mt-3">Esqueceu sua senha? <a href="#" >Clique aqui</a></p>
-        <p>ou</p>
-        <p class="mt-3">Não tem cadastro? <a href="#" >Crie sua conta</a></p>
+        <p class="mt-3">Não tem cadastro? <a href="CriarCadastro.php" >Crie sua conta</a></p>
       </div>
     </div>
   </div>

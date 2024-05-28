@@ -28,7 +28,7 @@
         <a class="nav-link" href="../telas/chuteira.php" >Chuteiras</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="../telas/bolas.php"id="ativo">Bolas</a>
+        <a class="nav-link" href="../telas/bolas.php">Bolas</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="../telas/camisas.php">Camisas</a>
@@ -72,11 +72,45 @@
           </div>
           <button type="submit" class="btn btn-primary">Entrar</button>
         </form>
-        <p class="mt-3">Não tem cadastro? <a href="CriarCadastro.php" >Crie sua conta</a></p>
+        <p class="mt-3">Esqueceu sua senha? <a href="#" >Clique aqui</a></p>
+        <p>ou</p>
+        <p class="mt-3">Não tem cadastro? <a href="#" >Crie sua conta</a></p>
       </div>
     </div>
   </div>
 </div>
+
+<!-- Compra produtos -->
+
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-md-6">
+      <img src="../imagens/chuteiruda.webp" class="img-fluid" alt="Imagem do Produto">
+    </div>
+    <div class="col-md-6">
+      <h2>Nome do Produto</h2>
+      <p>Descrição do produto aqui.</p>
+      <p>Preço: R$ XX.XX</p>
+      <form>
+        <div class="form-group d-flex align-items-center">
+          <label for="quantidade">Quantidade:</label>
+          <input type="number" class="form-control ml-2 mr-2" id="quantidade" min="1" value="1" style="width: 70px;">
+          <label for="tamanho" class="ml-2">Tamanho:</label>
+          <select class="form-control ml-2" id="tamanho" style="width: 70px;">
+            <option value="PP">PP</option>
+            <option value="P">P</option>
+            <option value="M">M</option>
+            <option value="G">G</option>
+            <option value="GG">GG</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary btn-lg" id="btn-addcarrinho">Adicionar ao Carrinho</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+
 <!-- Srcript Tela Modal Login -->
  <script>
   var modal = document.getElementById("loginModal");
@@ -94,4 +128,5 @@
       }
     }
  </script>
+
 </body>

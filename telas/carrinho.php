@@ -50,50 +50,52 @@
     <button id="btnlogin" class="btn btn-outline-light my-2 my-sm-0 ml-2">Login</button>
 </nav>
 </nav>
-<!-- Login Form -->
-<div class="modal" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="loginModalLabel">Login</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="loginModalLabel">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form action="../funcoes/login.php" method="post"> 
-          <div class="form-group">
-            <label for="exampleInputEmail1">Endereço de email:</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Seu email">
-          </div>
-          <div class="form-group">
-            <label>Senha:</label>
-            <input type="password" class="form-control" name="pass" placeholder="Senha">
-          </div>
-          <button type="submit" class="btn btn-primary">Entrar</button>
-        </form>
-        <p class="mt-3">Esqueceu sua senha? <a href="#" >Clique aqui</a></p>
-        <p>ou</p>
-        <p class="mt-3">Não tem cadastro? <a href="#" >Crie sua conta</a></p>
-      </div>
+
+ <!-- Informacoes carrinho -->
+
+<div class="container mt-4">
+    <div class="row">
+        <!-- Coluna dos produtos no carrinho -->
+        <div class="col-md-8">
+            <h2>Seu Carrinho</h2>
+            <!-- Lista de produtos no carrinho -->
+            <div class="card mb-3">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <!-- Imagem do produto -->
+                            <img src="../imagens/chuteira1.jpg" alt="Produto" class="img-fluid">
+                        </div>
+                        <div class="col-md-6">
+                            <!-- Informações do produto -->
+                            <h5 class="card-title">Nome do Produto</h5>
+                            <p class="card-text">Descrição do produto...</p>
+                        </div>
+                        <div class="col-md-2">
+                            <!-- Botão para excluir o produto do carrinho -->
+                            <button class="btn btn-danger"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Repita esse bloco para cada produto no carrinho -->
+        </div>
+        <!-- Coluna do resumo do pedido e botão de finalizar compra -->
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Resumo do Pedido</h5>
+                    <!-- Valor dos produtos -->
+                    <p>Subtotal: R$ 100,00</p>
+                    <!-- Valor do frete -->
+                    <p>Frete: R$ 10,00</p>
+                    <!-- Valor total -->
+                    <h4>Total: R$ 110,00</h4>
+                    <!-- Botão de finalizar compra -->
+                    <button class="btn btn-primary btn-block" id="btn-finalizar" style="background-color: rgba(11,47,88,0.95)">Finalizar Compra</button>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
-<!-- Srcript Tela Modal Login -->
- <script>
-  var modal = document.getElementById("loginModal");
-  var btn = document.getElementById("btnlogin");
-  var span = document.getElementsByClassName("close")[0];
-    btn.onclick = function() {
-      modal.style.display = "block";
-    }
-    span.onclick = function() {
-      modal.style.display = "none";
-    }
-    window.onclick = function(event) {
-      if (event.target == modal) {
-        modal.style.display = "none";
-      }
-    }
- </script>
 </body>

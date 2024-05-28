@@ -77,6 +77,12 @@ body {
     background-color: rgba(11, 47, 88, 0.95);    
 }
 
+/*Botao carrinho*/
+
+#btn-addcarrinho{
+    border-color: rgba(11, 47, 88, 0.95); ;
+    background-color: rgba(11, 47, 88, 0.95); 
+}
 /*Estilo carrinho*/
 
 .navbar-carrinho{
