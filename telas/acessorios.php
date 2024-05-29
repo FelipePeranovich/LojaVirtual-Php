@@ -47,8 +47,15 @@
       <input class="form-control mr-sm-2" type="search" placeholder="Pesquisar" aria-label="Search">
       <button class="btn btn-outline-light my-2 my-sm-0 ml-2" type="submit">Pesquisar</button>
     </form>
-    <button id="btnlogin" class="btn btn-outline-light my-2 my-sm-0 ml-2">Login</button>
-</nav>
+    <?php
+      session_start();
+      if(!empty($_SESSION["usuario"])){            
+        echo '<a class="navbar-logado p-3"  id="icone-logado" href="#"><img class="d-inline-block align-top" width="30" height="30" src="../imagens/iconelogado.png" alt="perfil"></a>';
+        echo '<h8 class="d-inline-block align-top" style="color:#fff">'.$_SESSION["usuario"].'</h8>'.'<a class ="nav-link" href="../funcoes/sair.php"><img class="d-inline-block align-top" width="20" height="20" src="../imagens/icon-sair.png" alt="sair"></a>';
+      }else{
+        echo '<button id="btnlogin" class="btn btn-outline-light my-2 my-sm-0 ml-2">Login</button>'; 
+      }
+    ?> 
 </nav>
 <!-- Login Form -->
 <div class="modal" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
@@ -64,7 +71,7 @@
         <form action="../funcoes/login.php" method="post">
           <div class="form-group">
             <label for="exampleInputEmail1">Endereço de email:</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Seu email">
+            <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Seu email">
           </div>
           <div class="form-group">
             <label>Senha:</label>
