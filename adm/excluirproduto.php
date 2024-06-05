@@ -1,3 +1,9 @@
+<?php
+include_once ("../funcoes/banco.php");
+$bd = conectar();
+$consulta = "select * from produtos p join categorias c on p.fk_Categorias_id_categoria = c.id_categoria join fornecedor f on p.fk_Fornecedor_id_fornecedor = f.id_fornecedor order by p.id_produto";
+$resultado = $bd->query($consulta);
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -18,7 +24,7 @@
 <body>
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg ">
-  <a class="navbar-brand" href=""><img style="width:70px" src="../imagens/LogoAtletaShop.png"></a>
+  <a class="navbar-brand" href="../telas/index.php"><img style="width:70px" src="../imagens/LogoAtletaShop.png"></a>
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
@@ -35,8 +41,34 @@
       </li>
 
 </nav>
-</nav>
-
+<div class=""><table>
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Categoria</th>
+                <th>Fornecedor</th> 
+                <th>Quantidade</th>
+            </tr>
+        </thead>
+        <tbody>
+        <?php
+            while($prod = $resultado->fetch()){
+                echo "<tr>";
+                    echo "<td>".$prod["nm_produto"]."</td>";
+                    echo "<td>".$prod["nm_categoria"]."</td>";
+                    echo "<td>".$prod["nm_fornecedor"]."</td>";
+                    echo "<td>".$prod["qtd_produto"]."</td>";
+                    echo "<td><a href='../funcoes/deleteProduto.php?id_produto=".$prod['id_produto']."'><button class='btn btn-danger'>Excluir</button></a>";
+                    echo "<td><a href='../adm/editarProduto.php?id_produto=".$prod['id_produto']."'><button class='btn btn-primary'>Editar</button></a></td>";
+                echo "</tr>";
+                
+            }
+            $resultado = null;
+            $bd = null;
+        ?>
+        </tbody>
+    </table>
+        </div>
 
 </body>
 </html>

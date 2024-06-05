@@ -56,14 +56,17 @@ body {
 }
 
 /* Estilo para o carrossel */
-.carousel-item {
-    text-align: center;
-}
+.carousel-item{
+    height: 100vh; /* dimensiona o slider à altura do viewport */
+    background-size: cover;
+    background-position: 50% 0;
+ }
 /* Estilo para as imagens no carrossel */
 .carousel-item img {
-    max-height: 600px; /* Defina a altura máxima desejada */
-    max-width: 60%; /* Isso garantirá que a largura seja ajustada automaticamente para manter a proporção */
+    max-height: 6000px; /* Defina a altura máxima desejada */
+    max-width: 100%; /* Isso garantirá que a largura seja ajustada automaticamente para manter a proporção */
     margin: 0 auto; /* Centralizar a imagem horizontalmente */
+    background-size: cover;
 }
 
 /*
@@ -115,4 +118,3 @@ body {
     border-color: rgba(11, 47, 88, 0.95); ;
     background-color: rgba(11, 47, 88, 0.95);    
 }
-

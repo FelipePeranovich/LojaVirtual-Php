@@ -1,8 +1,9 @@
 <?php
 include_once ("../funcoes/banco.php");
 $bd = conectar();
-$consulta = "select * from fornecedor order by id_fornecedor";
+$consulta = "select * from produtos p join imagem i on p.id_produto = i.fk_Produtos_id_produto join categorias c on p.fk_Categorias_id_categoria = c.id_categoria join fornecedor f on p.fk_Fornecedor_id_fornecedor = f.id_fornecedor";
 $resultado = $bd->query($consulta);
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -41,23 +42,29 @@ $resultado = $bd->query($consulta);
       </li>
 
 </nav>
-<div class=""><table>
+  <br>
+    <a href="produto.php"><button type="button">Voltar</button></a>
+  <br>
+<div class="ontainer mt-4 p-3"><table>
         <thead>
             <tr>
-                <th>Nome</th>
-                <th>CNPJ</th>
-                <th>Atividade</th>
+                <th>Id Produto</th>
+                <th>Produto</th>
+                <th>Categoria</th>
+                <th>Fornecedor</th>
+                <th>Url</th>
             </tr>
         </thead>
         <tbody>
         <?php
-            while($for = $resultado->fetch()){
+            while($img = $resultado->fetch()){
                 echo "<tr>";
-                    echo "<td>".$for["nm_fornecedor"]."</td>";
-                    echo "<td>".$for["cnpj_fornecedor"]."</td>";
-                    echo "<td>".$for["atividade_fornecedor"]."</td>";
-                    echo "<td><a href='../funcoes/deleteFornecedor.php?id_fornecedor=".$for['id_fornecedor']."'><button class='btn btn-danger'>Excluir</button></a></td>";
-                    echo "<td><a href='../adm/editarFornecedor.php?id_fornecedor=".$for['id_fornecedor']."'><button class='btn btn-primary'>Editar</button></a></td>";
+                    echo "<td>".$img["id_produto"]."</td>";
+                    echo "<td>".$img["nm_produto"]."</td>";
+                    echo "<td>".$img["nm_categoria"]."</td>";
+                    echo "<td>".$img["nm_fornecedor"]."</td>";
+                    echo "<td>".$img["url_imagem"]."</td>";
+                    echo "<td><a href='../adm/editarImagem.php?id_imagem=".$img['id_imagem']."'><button class='btn btn-primary'>Editar</button></a></td>";
                 echo "</tr>";
                 
             }

@@ -35,7 +35,7 @@
         <a class="nav-link" href="../telas/camisas.php">Camisas</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="../telas/conjuntos.php">Conjunto</a>
+        <a class="nav-link" href="../telas/conjuntos.php">Conjuntos</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="../telas/acessorios.php">Acessórios</a>

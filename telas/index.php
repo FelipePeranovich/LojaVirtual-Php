@@ -58,9 +58,8 @@
       }
     ?> 
 </nav>
-
 <!-- Carousel -->
-<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+<div id="carouselExampleIndicators" class="carousel slide" style="width:100%" data-ride="carousel">
   <ol class="carousel-indicators">
     <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
     <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
@@ -68,24 +67,21 @@
   </ol>
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img class="d-block w-100" src="../imagens/chuteiruda.webp" alt="Primeira chuteira">
+      <img class="d-block w-100" src="../imagens/chuteiras.jpg" alt="chuteiras">
       <div class="carousel-caption d-none d-md-block">
-        <h5>Chuteira 1</h5>
-        <button class="btn btn-primary" id="btn-addcarrinho">Adicionar ao Carrinho</button>
+        <a href="../telas/chuteira.php"><button class="btn btn-primary" id="btn-addcarrinho">Ver mais</button></a>
       </div>
     </div>
     <div class="carousel-item">
-      <img class="d-block w-100" src="../imagens/chuteiruda.webp" alt="Segunda chuteira">
+      <img class="d-block w-100" src="../imagens/camisas.jpg" alt="camisas">
       <div class="carousel-caption d-none d-md-block">
-        <h5>Chuteira 2</h5>
-        <button class="btn btn-primary" id="btn-addcarrinho">Adicionar ao Carrinho</button>
+        <a href="../telas/camisas.php"><button class="btn btn-primary" id="btn-addcarrinho">Ver mais</button></a>
       </div>
     </div>
     <div class="carousel-item">
-      <img class="d-block w-100" src="../imagens/chuteiruda.webp" alt="Terceira chuteira">
+      <img class="d-block w-100" src="../imagens/conjuntos.jpg" alt="cunjuntos">
       <div class="carousel-caption d-none d-md-block">
-        <h5>Chuteira 3</h5>
-        <button class="btn btn-primary" id="btn-addcarrinho">Adicionar ao Carrinho</button>
+        <a href="../telas/conjuntos.php"><button class="btn btn-primary" id="btn-addcarrinho">Ver mais</button></a>
       </div>
     </div>
   </div>
@@ -143,5 +139,6 @@
         modal.style.display = "none";
       }
     }
+    
      </script>
 </body>

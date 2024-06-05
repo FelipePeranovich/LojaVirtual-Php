@@ -58,27 +58,27 @@
     <div class="form-row">
         <div class="form-group col-md-6">
             <label for="inputEmail4">Email</label>
-            <input type="email" class="form-control" name="email" id="inputEmail4" placeholder="Email">
+            <input type="email" class="form-control" name="email" id="inputEmail4" placeholder="Email" required>
         </div>
         <div class="form-group col-md-6">
             <label for="inputPassword4">Senha</label>
-            <input type="password" class="form-control" name="senha" id="inputPassword4" placeholder="Senha" maxlength="14">
+            <input type="password" class="form-control" name="senha" id="inputPassword4" placeholder="Senha" maxlength="14" required>
         </div>
     </div>
     <div class="form-row">
         <div class="form-group col-md-6">
             <label for="inputName">Nome</label>
-            <input type="text" class="form-control" name="nome" id="name" placeholder="Raphael Veiga Ferreira">
+            <input type="text" class="form-control" name="nome" id="name" placeholder="Raphael Veiga Ferreira" required>
         </div>
         <div class="form-group col-md-6">
             <label for="inputcpf">CPF</label>
-            <input type="text" class="form-control" name="cpf" id="cpf" placeholder="123.123.123-10" maxlength="14">
+            <input type="text" class="form-control" name="cpf" id="cpf" placeholder="123.123.123-10" maxlength="14" required>
         </div>
     </div>
     <div class="form-row">
         <div class="form-group col-md-3">
             <label for="cep">CEP</label>
-            <input type="text" class="form-control" name="cep" id="cep" placeholder="12345-678" maxlength="9" onkeyup="handleZipCode(event)" autofocus>
+            <input type="text" class="form-control" name="cep" id="cep" placeholder="12345-678" maxlength="9" onkeyup="handleZipCode(event)" autofocus required>
         </div>
         <div class="form-group col-md-3 " >
             <label for="inputNRO">Número</label>
@@ -86,7 +86,7 @@
         </div>
         <div class="form-group col-md-6">
             <label for="inputTEL">Telefone</label>
-            <input type="text" class="form-control" name="telefone" id="telefone" placeholder="Telefone para contato" maxlength="15" onkeyup="handlePhone(event)" >
+            <input type="text" class="form-control" name="telefone" id="telefone" placeholder="Telefone para contato" maxlength="15" onkeyup="handlePhone(event)" required>
         </div>
     </div>
     <div class="form-row">
@@ -109,11 +109,16 @@
     </div>
         <div class="col-md-12 text-center mt-3" >
             <button type="submit" class="btn btn-primary"id="bt-cadastrar" style="background-color: rgba(11,47,88,0.95)">Cadastrar</button>
-            <button type="submit" class="btn btn-danger" id="bt-cancelar" >Cancelar</button>
+            <button type="button" class="btn btn-danger" onclick="limparCampos()">Cancelar</button>
         </div>
     </form>
 </div>   
 <script type="text/javascript">
+
+    function limparCampos() {
+        document.getElementById("formulario").reset();
+    }
+
     const handleZipCode = (event) => {
     let input = event.target
     input.value = zipCodeMask(input.value)
@@ -125,7 +130,7 @@
     value = value.replace(/(\d{5})(\d)/,'$1-$2')
     return value
     }
-    const input = document.getElementById("cpf");
+  const input = document.getElementById("cpf");
 
   input.addEventListener("keyup", formatarCPF);
 

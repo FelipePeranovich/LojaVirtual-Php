@@ -1,8 +1,16 @@
+<?php
+    include_once '../funcoes/banco.php';
+    $bd = conectar();
+    $consulta = "select * from fornecedor order by id_fornecedor";
+    $resultado = $bd->query($consulta);
+    $consulta2 = "select * from categorias order by id_categoria";
+    $resultado2 = $bd->query($consulta2);
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">      
   <title>Cadastro de Produtos - Admin</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -18,7 +26,7 @@
 <body>
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg ">
-  <a class="navbar-brand" href=""><img style="width:70px" src="../imagens/LogoAtletaShop.png"></a>
+  <a class="navbar-brand" href="../telas/index.php"><img style="width:70px" src="../imagens/LogoAtletaShop.png"></a>
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
@@ -42,7 +50,7 @@
     <div class="row">
         <div class="col-md-6">
             <!-- Lado Esquerdo -->
-            <form id="produtoForm" method="post" action="processar_cadastro.php">
+            <form id="produtoForm" method="post" action="../funcoes/cadastroProduto.php">
                 <div class="form-group">
                     <label for="nomeProduto">Nome do Produto:</label>
                     <input type="text" class="form-control" id="nomeProduto" name="nomeProduto" required>
@@ -51,6 +59,18 @@
                     <label for="descricaoProduto">Descrição do Produto:</label>
                     <input type="text" class="form-control" id="descricaoProduto" name="descricaoProduto" rows="3" required>
                 </div>
+                <div>
+                <label for="tipoProduto">Tipo do Produto:</label>
+                    <select class="form-control" id="tipoProduto" name="tipoProduto">
+                    <option value=""></option>
+                    <?php
+                while($cat = $resultado2->fetch()){
+                echo "<option value=".$cat["id_categoria"].">".$cat['nm_categoria']."</option>";
+            }
+        ?> 
+                    </select>
+                </div>
+                
             </div>
             <div class="col-md-6">
                 <!-- Lado Direito -->
@@ -62,15 +82,19 @@
                     <label for="quantidadeProduto">Quantidade do Produto:</label>
                     <input type="number" class="form-control" id="quantidadeProduto" name="quantidadeProduto" required min="1">
                 </div>
-                <div class="form-group">
-                    <label for="tipoProduto">Tipo do Produto:</label>
-                    <select class="form-control" id="tipoProduto" name="tipoProduto">
-                        <option value="1">Tipo 1</option>
-                        <option value="2">Tipo 2</option>
-                        <option value="3">Tipo 3</option>
-                        <!-- Adicione mais opções conforme necessário -->
+                <div>
+                    <label for="tipoFornecedor">Fornecedor:</label>
+                    <select class="form-control" id="tipoFornecedor" name="tipoFornecedor">
+                    <option value=""></option>
+                    <?php
+                while($for = $resultado->fetch()){
+                echo "<option value=".$for["id_fornecedor"].">".$for['nm_fornecedor']."</option>";
+            }
+            $resultado = null;
+            $bd = null;
+        ?> 
                     </select>
-                </div>
+                
             </div>
         </div>
         <!-- Botões de Enviar e Limpar -->
@@ -78,8 +102,12 @@
             <button type="submit" class="btn btn-primary" style="background-color: rgba(11, 47, 88, 0.95)" >Enviar</button>
             <button type="button" class="btn btn-danger" onclick="limparCampos()">Cancelar</button>
         </div>
-    </form>
+    </form>    
 </div>
+    <a href="imagens.php"><button type="button" class="btn btn-dark" >Editar imagem de produto existente</button></a>
+    <br>
+    <br>
+    <a href="novaimagem.php"><button type="button" class="btn btn-dark" >Adicionar imagem de produto já cadastro</button></a>
 
 <script>
     function limparCampos() {

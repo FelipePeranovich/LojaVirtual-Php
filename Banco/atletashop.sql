@@ -1,4 +1,4 @@
-/* Lógico_1: */
+/* mer_atletashop: */
 
 CREATE TABLE Clientes (
     id_cliente int(11) PRIMARY KEY,
@@ -16,6 +16,7 @@ CREATE TABLE Produtos (
     valor_prod float(10,2),
     nm_produto varchar(255),
     id_produto int(11) PRIMARY KEY,
+    Atributo_1 int(15),
     fk_Categorias_id_categoria int(11),
     fk_Fornecedor_id_fornecedor int(11)
 );
@@ -41,18 +42,8 @@ CREATE TABLE Compra (
     dt_compra date,
     valor_frete float(10,2),
     valor_comissao float(10,2),
-    fk_Transportadora_id_transportadora int(11),
     fk_Clientes_id_cliente int(11),
     fk_Vendedor_id_vendedor int(11)
-);
-
-CREATE TABLE Transportadora (
-    id_transportadora int(11) PRIMARY KEY,
-    nm_transportadora varchar(255),
-    cnpj_transportadora varchar(18),
-    cep_transportadora varchar(9),
-    nro_transportadora int(11),
-    telefone_transportadora varchar(15)
 );
 
 CREATE TABLE Fornecedor (
@@ -63,12 +54,6 @@ CREATE TABLE Fornecedor (
     cep_fornecedor varchar(9),
     nro_fornecedor int(11),
     telefone_fornecedor varchar(15)
-);
-
-CREATE TABLE tamanho (
-    tamanho_produto varchar(20),
-    qtd_tamanho int(11),
-    fk_Produtos_id_produto int(11)
 );
 
 CREATE TABLE ItemCompra (
@@ -94,23 +79,13 @@ ALTER TABLE Imagem ADD CONSTRAINT FK_Imagem_2
     ON DELETE CASCADE;
  
 ALTER TABLE Compra ADD CONSTRAINT FK_Compra_2
-    FOREIGN KEY (fk_Transportadora_id_transportadora)
-    REFERENCES Transportadora (id_transportadora)
-    ON DELETE RESTRICT;
- 
-ALTER TABLE Compra ADD CONSTRAINT FK_Compra_3
     FOREIGN KEY (fk_Clientes_id_cliente)
     REFERENCES Clientes (id_cliente)
     ON DELETE CASCADE;
  
-ALTER TABLE Compra ADD CONSTRAINT FK_Compra_4
+ALTER TABLE Compra ADD CONSTRAINT FK_Compra_3
     FOREIGN KEY (fk_Vendedor_id_vendedor)
     REFERENCES Vendedor (id_vendedor)
-    ON DELETE CASCADE;
- 
-ALTER TABLE tamanho ADD CONSTRAINT FK_tamanho_1
-    FOREIGN KEY (fk_Produtos_id_produto)
-    REFERENCES Produtos (id_produto)
     ON DELETE CASCADE;
  
 ALTER TABLE ItemCompra ADD CONSTRAINT FK_ItemCompra_1
