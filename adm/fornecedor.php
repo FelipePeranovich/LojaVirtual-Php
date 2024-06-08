@@ -103,17 +103,19 @@
     function limparCampos() {
         document.getElementById("formulario").reset();
     }
-    
-    const input = document.getElementById("cnpj");
-    input.addEventListener("keyup", cnpj);
-    function cnpj(v){
-    v=v.replace(/\D/g,"")                           //Remove tudo o que não é dígito
-    v=v.replace(/^(\d{2})(\d)/,"$1.$2")             //Coloca ponto entre o segundo e o terceiro dígitos
-    v=v.replace(/^(\d{2})\.(\d{3})(\d)/,"$1.$2.$3") //Coloca ponto entre o quinto e o sexto dígitos
-    v=v.replace(/\.(\d{3})(\d)/,".$1/$2")           //Coloca uma barra entre o oitavo e o nono dígitos
-    v=v.replace(/(\d{4})(\d)/,"$1-$2")              //Coloca um hífen depois do bloco de quatro dígitos
-    return v
+    function mascaraCNPJ(cnpj) {
+    cnpj = cnpj.replace(/\D/g, ""); // Remove tudo o que não é dígito
+    cnpj = cnpj.replace(/^(\d{2})(\d)/, "$1.$2"); // Coloca o ponto entre o segundo e o terceiro dígitos
+    cnpj = cnpj.replace(/^(\d{2})\.(\d{3})(\d)/, "$1.$2.$3"); // Coloca o ponto entre o quinto e o sexto dígitos
+    cnpj = cnpj.replace(/\.(\d{3})(\d)/, ".$1/$2"); // Coloca a barra entre o oitavo e o nono dígitos
+    cnpj = cnpj.replace(/(\d{4})(\d)/, "$1-$2"); // Coloca o hífen entre o décimo segundo e o décimo terceiro dígitos
+    return cnpj;
 }
+
+document.getElementById('cnpj').addEventListener('input', function (e) {
+    e.target.value = mascaraCNPJ(e.target.value);
+});
+    
     const handleZipCode = (event) => {
     let input = event.target
     input.value = zipCodeMask(input.value)

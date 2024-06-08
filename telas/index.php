@@ -43,13 +43,19 @@
       </li>
     </ul> 
   </div>
-  <a class="navbar-carrinho" href="carrinho.php" id="btn-carrinho"><img class="d-inline-block align-top" width="30" height="30" src="../imagens/carrinho.png" alt="carrinho"></a>
+  <?php
+  session_start();
+  if(!empty($_SESSION["usuario"])){
+    echo'<a class="navbar-carrinho" href="carrinho.php" id="btn-carrinho"><img class="d-inline-block align-top" width="30" height="30" src="../imagens/carrinho.png" alt="carrinho"></a>';
+  }else{
+    echo '<a class="navbar-carrinho" href="#" id="btnloginCarrinho"><img class="d-inline-block align-top" id="alert-icon" width="30" height="30" src="../imagens/carrinho.png" alt="carrinho"></a>'; 
+  }
+    ?>
     <form class="form-inline my-2 my-lg-0 navbar-form">
       <input class="form-control mr-sm-2" type="search" placeholder="Pesquisar" aria-label="Search">
       <button class="btn btn-outline-light my-2 my-sm-0 ml-2" type="submit">Pesquisar</button>
     </form>
     <?php
-      session_start();
       if(!empty($_SESSION["usuario"])){            
         echo '<a class="navbar-logado p-3"  id="icone-logado" href="#"><img class="d-inline-block align-top" width="30" height="30" src="../imagens/iconelogado.png" alt="perfil"></a>';
         echo '<h8 class="d-inline-block align-top" style="color:#fff">'.$_SESSION["usuario"].'</h8>'.'<a class ="nav-link" href="../funcoes/sair.php"><img class="d-inline-block align-top" width="20" height="20" src="../imagens/icon-sair.png" alt="sair"></a>';
@@ -67,19 +73,19 @@
   </ol>
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img class="d-block w-100" src="../imagens/chuteiras.jpg" alt="chuteiras">
+      <img class="d-block w-100" src="../imagens/chuteira.jpg" alt="chuteiras">
       <div class="carousel-caption d-none d-md-block">
         <a href="../telas/chuteira.php"><button class="btn btn-primary" id="btn-addcarrinho">Ver mais</button></a>
       </div>
     </div>
     <div class="carousel-item">
-      <img class="d-block w-100" src="../imagens/camisas.jpg" alt="camisas">
+      <img class="d-block w-100" src="../imagens/camisa.jpg" alt="camisas">
       <div class="carousel-caption d-none d-md-block">
         <a href="../telas/camisas.php"><button class="btn btn-primary" id="btn-addcarrinho">Ver mais</button></a>
       </div>
     </div>
     <div class="carousel-item">
-      <img class="d-block w-100" src="../imagens/conjuntos.jpg" alt="cunjuntos">
+      <img class="d-block w-100" src="../imagens/conjunto.jpg" alt="cunjuntos">
       <div class="carousel-caption d-none d-md-block">
         <a href="../telas/conjuntos.php"><button class="btn btn-primary" id="btn-addcarrinho">Ver mais</button></a>
       </div>
@@ -131,6 +137,7 @@
     btn.onclick = function() {
       modal.style.display = "block";
     }
+
     span.onclick = function() {
       modal.style.display = "none";
     }
@@ -139,6 +146,12 @@
         modal.style.display = "none";
       }
     }
-    
+    document.addEventListener('DOMContentLoaded', () => {
+    const alertIcon = document.getElementById('alert-icon');
+
+    alertIcon.addEventListener('click', () => {
+        alert('Para acessar está função é necessario fazer o login!');
+    });
+});
      </script>
 </body>

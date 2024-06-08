@@ -1,4 +1,10 @@
 <!DOCTYPE html>
+<?php
+  include_once ("../funcoes/banco.php");
+  $bd = conectar();
+  $consulta ="SELECT * from imagem i join produtos p  on i.fk_Produtos_id_produto=p.id_produto and p.fk_Categorias_id_categoria=1";
+  $resultado = $bd->query($consulta);   
+?>
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
@@ -43,13 +49,19 @@
     </ul>
     
   </div>
-  <a class="navbar-carrinho" href="carrinho.php"><img class="d-inline-block align-top" width="30" height="30" src="../imagens/carrinho.png" alt="carrinho"></a>
-  <form class="form-inline my-2 my-lg-0 navbar-form">
+  <?php
+  session_start();
+  if(!empty($_SESSION["usuario"])){
+    echo'<a class="navbar-carrinho" href="carrinho.php" id="btn-carrinho"><img class="d-inline-block align-top" width="30" height="30" src="../imagens/carrinho.png" alt="carrinho"></a>';
+  }else{
+    echo '<a class="navbar-carrinho" href="#" ><img class="d-inline-block align-top" id="alert-icon" width="30" height="30" src="../imagens/carrinho.png" alt="carrinho"></a>'; 
+  }
+    ?>
+    <form class="form-inline my-2 my-lg-0 navbar-form">
       <input class="form-control mr-sm-2" type="search" placeholder="Pesquisar" aria-label="Search">
       <button class="btn btn-outline-light my-2 my-sm-0 ml-2" type="submit">Pesquisar</button>
     </form>
     <?php
-      session_start();
       if(!empty($_SESSION["usuario"])){            
         echo '<a class="navbar-logado p-3"  id="icone-logado" href="#"><img class="d-inline-block align-top" width="30" height="30" src="../imagens/iconelogado.png" alt="perfil"></a>';
         echo '<h8 class="d-inline-block align-top" style="color:#fff">'.$_SESSION["usuario"].'</h8>'.'<a class ="nav-link" href="../funcoes/sair.php"><img class="d-inline-block align-top" width="20" height="20" src="../imagens/icon-sair.png" alt="sair"></a>';
@@ -58,14 +70,29 @@
       }
     ?> 
 </nav>
-
-    <div class="vitrine-item" id="img-produto">
-      <img  src="../imagens/chuteira1.jpg" alt="">
-        <h5>Chuteira</h5>
-        <button class="btn btn-primary" id="btn-addcarrinho">Adicionar ao Carrinho</button>
-    </div>
-    
-
+<div class="product-grid p-3">
+<?php
+  while($res = $resultado->fetch()){
+    echo'<div class="product-card">';
+      //echo '<form action="enviacarrinho.php" method="POST">';
+      echo'<img  src="'.$res["url_imagem"].'" alt="">';
+      echo '<p>'.$res["ds_produto"].'</p>';
+      echo '<p class="price">'."R$".$res["valor_prod"].'</p>';
+      if($res["qtd_produto"] > 0){
+      echo '<p>Quantidade: '.$res["qtd_produto"].'</p>';
+    }else{
+    echo '<p>PRODUTO ESGOTADO!</p>';
+  }
+    if(!empty($_SESSION["usuario"])){
+    echo'  <input type="submit" class="" id="alert-carrinho" value="Adicionar ao Carrinho">';
+    }else{
+      echo '<input type="submit" class="" id="btn-addcarrinho" value="Adicionar ao Carrinho">';
+    }
+     // echo '</form>';
+    echo '</div>';
+  }
+?>
+</div>
 <!-- Login Form -->
 <div class="modal" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -109,5 +136,19 @@
         modal.style.display = "none";
       }
     }
+    document.addEventListener('DOMContentLoaded', () => {
+    const alertIcon = document.getElementById('alert-icon');
+
+    alertIcon.addEventListener('click', () => {
+        alert('Para acessar está função é necessario fazer o login!');
+    });
+});
+  document.addEventListener('DOMContentLoaded', () => {
+    const alertIcon = document.getElementById('alert-carrinho');
+
+    alertIcon.addEventListener('click', () => {
+        alert('Para acessar está função é necessario fazer o login!');
+    });
+});
  </script>
 </body>

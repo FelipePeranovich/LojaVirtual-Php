@@ -83,6 +83,10 @@ body {
     border-color: rgba(11, 47, 88, 0.95); ;
     background-color: rgba(11, 47, 88, 0.95); 
 }
+#alert-carrinho{
+    border-color: rgba(11, 47, 88, 0.95); ;
+    background-color: rgba(11, 47, 88, 0.95); 
+}
 /*Estilo carrinho*/
 
 .navbar-carrinho{

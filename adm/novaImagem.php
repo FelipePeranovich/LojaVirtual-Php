@@ -2,8 +2,7 @@
     include_once '../funcoes/banco.php';
     $bd = conectar();
     $consulta = "select * from produtos p join categorias c on c.id_categoria = p.fk_Categorias_id_categoria join fornecedor f on f.id_fornecedor = p.fk_Fornecedor_id_fornecedor order by id_produto";
-    $resultado = $bd->query($consulta);
-    $img = $resultado->fetch();
+    $resultado = $bd->query($consulta);   
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -51,8 +50,8 @@
     <div class="row">
         <div class="col-md-6">
             <!-- Lado Esquerdo -->
-            <form id="imagemForm" method="post" action="../funcoes/cadastroImagem.php">
-                <div class="form-group">
+            <form id="imagemForm" method="post" action="../funcoes/cadastroImagem.php" enctype="multipart/form-data">
+              <div class="form-group">
                 <label for="nomeProduto">Produto:</label>
                 <select class="form-control" id="nomeProduto" name="nomeProduto">
                     <option value=""></option>
@@ -65,10 +64,12 @@
                     ?> 
                 </select>
                 <br>
-                <div class="form-group">
-                    <label>Url</label>
-                    <input type="text" name="url" value="">
+                <label for="arquivo">Carregue a imagem aqui:</label>
+                <input type="file" id="fileInput" name="arquivo">
+                <div id="image-container">
+                    <span> Imagem será exibida aqui</span>
                 </div>
+              </div>
         </div>
         <!-- Botões de Enviar e Limpar -->
         <div class="col-md-12 text-center mt-3"> 
@@ -82,7 +83,49 @@
     function limparCampos() {
         document.getElementById("produtoForm").reset();
     }
-</script>
+    //Código uploud imagem.
+    const fileInput = document.getElementById('fileInput');
+        const imageContainer = document.getElementById('image-container');
 
+        let file;
+
+        // Ao selecionar um arquivo
+        fileInput.addEventListener('change', (event) => {
+            file = event.target.files[0];
+        });
+
+        // Ao clicar fora do input de seleção
+        document.addEventListener('click', (event) => {
+            if (!fileInput.contains(event.target) && file) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    const img = document.createElement('img');
+                    img.src = e.target.result;
+
+                    // Limpa o container e adiciona a nova imagem
+                    imageContainer.innerHTML = '';
+                    imageContainer.appendChild(img);
+                }
+                reader.readAsDataURL(file);
+                file = null; // Reseta o arquivo para evitar múltiplos carregamentos
+            }
+        });
+
+</script>
+<style>
+  #image-container {
+            width: 150px;
+            height: 150px;
+            border: 2px dashed #ccc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+        #image-container img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+</style>
 </body>
 </html>
