@@ -3,7 +3,7 @@
   include_once ("../funcoes/banco.php");
   $bd = conectar();
   $id = filter_input(INPUT_GET,"id_produto",FILTER_SANITIZE_SPECIAL_CHARS);
-  $consulta ="select * from produtos p join imagem i where id_produto = '$id' and i.fk_Produtos_id_produto='$id'";
+  $consulta ="select * from produtos p join fornecedor f where id_produto = '$id' and p.fk_Fornecedor_id_fornecedor = f.id_fornecedor";
   $resultado = $bd->query($consulta); 
   $res = $resultado -> fetch();  
 ?>
@@ -111,6 +111,7 @@
     <div class="col-md-6">
       <h2><?=$res["nm_produto"];?></h2>
       <p><?=$res["ds_produto"];?></p>
+      <p>Fornecido por: <?=$res["nm_fornecedor"];?></p>
       <p>Preço: R$<?=$res["valor_prod"];?></p>
       <form>
         <div class="form-group d-flex align-items-center">

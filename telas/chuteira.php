@@ -79,7 +79,7 @@
       echo '<form action="enviacarrinho.php" method="POST">';
       echo'<img  src="'.$res["url_imagem"].'" alt="">';
       echo '<p>'.$res["ds_produto"].'</p>';
-      echo '<p class="price">'."R$".$res["valor_prod"].",00".'</p>';
+      echo '<p class="price">'."R$".$res["valor_prod"].'</p>';
       if($res["qtd_produto"] > 0){
       echo '<p>Quantidade: '.$res["qtd_produto"].'</p>';
       echo '<input type="submit" class="btn btn-primary" id="btn-addcarrinho" value="Adicionar ao Carrinho">';
