@@ -2,7 +2,7 @@
 <?php
   include_once ("../funcoes/banco.php");
   $bd = conectar();
-  $consulta ="SELECT * from imagem i join produtos p  on i.fk_Produtos_id_produto=p.id_produto and p.fk_Categorias_id_categoria=5";
+  $consulta ="SELECT * from produtos where fk_Categorias_id_categoria=5";
   $resultado = $bd->query($consulta);   
 ?>
 <html lang="pt-br">
@@ -53,7 +53,7 @@
   if(!empty($_SESSION["usuario"])){
     echo'<a class="navbar-carrinho" href="carrinho.php" id="btn-carrinho"><img class="d-inline-block align-top" width="30" height="30" src="../imagens/carrinho.png" alt="carrinho"></a>';
   }else{
-    echo '<a class="navbar-carrinho" href="#" id="btnlogin"><img class="d-inline-block align-top" width="30" height="30" src="../imagens/carrinho.png" alt="carrinho"></a>'; 
+    echo '<a class="navbar-carrinho" href="#" ><img class="d-inline-block align-top" id="alert-icon" width="30" height="30" src="../imagens/carrinho.png" alt="carrinho"></a>'; 
   }
     ?>
     <form class="form-inline my-2 my-lg-0 navbar-form">
@@ -65,10 +65,32 @@
         echo '<a class="navbar-logado p-3"  id="icone-logado" href="#"><img class="d-inline-block align-top" width="30" height="30" src="../imagens/iconelogado.png" alt="perfil"></a>';
         echo '<h8 class="d-inline-block align-top" style="color:#fff">'.$_SESSION["usuario"].'</h8>'.'<a class ="nav-link" href="../funcoes/sair.php"><img class="d-inline-block align-top" width="20" height="20" src="../imagens/icon-sair.png" alt="sair"></a>';
       }else{
-        echo '<a class="navbar-carrinho" href="#" id="btnloginCarrinho"><img class="d-inline-block align-top" id="alert-icon" width="30" height="30" src="../imagens/carrinho.png" alt="carrinho"></a>'; 
+        echo '<button id="btnlogin" class="btn btn-outline-light my-2 my-sm-0 ml-2">Login</button>';  
       }
     ?> 
 </nav>
+<!--EXIBE OS  PORDUTOS-->
+<div class="product-grid p-3">
+<?php
+  while($res = $resultado->fetch()){
+    echo'<div class="product-card ">';
+      echo "<a href='../telas/produto.php?id_produto=".$res['id_produto']."'>";
+      echo '<form action="enviacarrinho.php" method="POST">';
+      echo'<img  src="'.$res["url_imagem"].'" alt="">';
+      echo '<p>'.$res["ds_produto"].'</p>';
+      echo '<p class="price">'."R$".$res["valor_prod"].",00".'</p>';
+      if($res["qtd_produto"] > 0){
+      echo '<p>Quantidade: '.$res["qtd_produto"].'</p>';
+      echo '<input type="submit" class="btn btn-primary" id="btn-addcarrinho" value="Adicionar ao Carrinho">';
+    }else{
+    echo '<p>ESGOTADO!</p>';
+  }
+    echo '</form>';
+    echo '</a>';
+    echo '</div>';
+  }
+?>
+</div>
 <!-- Login Form -->
 <div class="modal" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">

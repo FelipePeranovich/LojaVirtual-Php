@@ -1,7 +1,7 @@
 <?php
 include_once ("../funcoes/banco.php");
 $bd = conectar();
-$consulta = "select * from produtos p join imagem i on p.id_produto = i.fk_Produtos_id_produto join categorias c on p.fk_Categorias_id_categoria = c.id_categoria join fornecedor f on p.fk_Fornecedor_id_fornecedor = f.id_fornecedor";
+$consulta = "select * from produtos p join categorias c on p.fk_Categorias_id_categoria = c.id_categoria join fornecedor f on p.fk_Fornecedor_id_fornecedor = f.id_fornecedor order by id_produto";
 $resultado = $bd->query($consulta);
 
 ?>
@@ -29,7 +29,7 @@ $resultado = $bd->query($consulta);
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" href="../adm/produto.php" >Cadastro produto</a>
+        <a class="nav-link" href="../adm/produto.php" id="ativo">Cadastro produto</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="../adm/fornecedor.php" >Cadastro fornecedor</a>
@@ -38,7 +38,7 @@ $resultado = $bd->query($consulta);
         <a class="nav-link" href="../adm/excluirproduto.php">Produtos</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="../adm/excluirfornecedor.php" id="ativo" >Fornecedores</a>
+        <a class="nav-link" href="../adm/excluirfornecedor.php" >Fornecedores</a>
       </li>
 
 </nav>
@@ -64,7 +64,7 @@ $resultado = $bd->query($consulta);
                     echo "<td>".$img["nm_categoria"]."</td>";
                     echo "<td>".$img["nm_fornecedor"]."</td>";
                     echo "<td>".$img["url_imagem"]."</td>";
-                    echo "<td><a href='../adm/editarImagem.php?id_imagem=".$img['id_imagem']."'><button class='btn btn-primary'>Editar</button></a></td>";
+                    echo "<td><a href='../adm/editarImagem.php?id_produto=".$img['id_produto']."'><button class='btn btn-primary'>Editar</button></a></td>";
                 echo "</tr>";
                 
             }

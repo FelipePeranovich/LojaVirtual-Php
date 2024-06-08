@@ -1,7 +1,8 @@
 CREATE DATABASE atletashop;
 USE atletashop;
 
-/* Lógico_1: */
+
+/* mer_atletashop: */
 
 CREATE TABLE Clientes (
     id_cliente int(11) PRIMARY KEY,
@@ -15,10 +16,12 @@ CREATE TABLE Clientes (
 );
 
 CREATE TABLE Produtos (
+    id_produto int(11) PRIMARY KEY,
     ds_produto varchar(255),
     valor_prod float(10,2),
     nm_produto varchar(255),
-    id_produto int(11) PRIMARY KEY,
+    qtd_produto int(15),
+    url_imagem varchar(100),
     fk_Categorias_id_categoria int(11),
     fk_Fornecedor_id_fornecedor int(11)
 );
@@ -26,12 +29,6 @@ CREATE TABLE Produtos (
 CREATE TABLE Categorias (
     id_categoria int(11) PRIMARY KEY,
     nm_categoria varchar(255)
-);
-
-CREATE TABLE Imagem (
-    id_imagem int(11) PRIMARY KEY,
-    url_imagem varchar(255),
-    fk_Produtos_id_produto int(11)
 );
 
 CREATE TABLE Vendedor (
@@ -44,18 +41,8 @@ CREATE TABLE Compra (
     dt_compra date,
     valor_frete float(10,2),
     valor_comissao float(10,2),
-    fk_Transportadora_id_transportadora int(11),
     fk_Clientes_id_cliente int(11),
     fk_Vendedor_id_vendedor int(11)
-);
-
-CREATE TABLE Transportadora (
-    id_transportadora int(11) PRIMARY KEY,
-    nm_transportadora varchar(255),
-    cnpj_transportadora varchar(18),
-    cep_transportadora varchar(9),
-    nro_transportadora int(11),
-    telefone_transportadora varchar(15)
 );
 
 CREATE TABLE Fornecedor (
@@ -66,12 +53,6 @@ CREATE TABLE Fornecedor (
     cep_fornecedor varchar(9),
     nro_fornecedor int(11),
     telefone_fornecedor varchar(15)
-);
-
-CREATE TABLE tamanho (
-    tamanho_produto varchar(20),
-    qtd_tamanho int(11),
-    fk_Produtos_id_produto int(11)
 );
 
 CREATE TABLE ItemCompra (
@@ -91,29 +72,14 @@ ALTER TABLE Produtos ADD CONSTRAINT FK_Produtos_3
     REFERENCES Fornecedor (id_fornecedor)
     ON DELETE CASCADE;
  
-ALTER TABLE Imagem ADD CONSTRAINT FK_Imagem_2
-    FOREIGN KEY (fk_Produtos_id_produto)
-    REFERENCES Produtos (id_produto)
-    ON DELETE CASCADE;
- 
 ALTER TABLE Compra ADD CONSTRAINT FK_Compra_2
-    FOREIGN KEY (fk_Transportadora_id_transportadora)
-    REFERENCES Transportadora (id_transportadora)
-    ON DELETE RESTRICT;
- 
-ALTER TABLE Compra ADD CONSTRAINT FK_Compra_3
     FOREIGN KEY (fk_Clientes_id_cliente)
     REFERENCES Clientes (id_cliente)
     ON DELETE CASCADE;
  
-ALTER TABLE Compra ADD CONSTRAINT FK_Compra_4
+ALTER TABLE Compra ADD CONSTRAINT FK_Compra_3
     FOREIGN KEY (fk_Vendedor_id_vendedor)
     REFERENCES Vendedor (id_vendedor)
-    ON DELETE CASCADE;
- 
-ALTER TABLE tamanho ADD CONSTRAINT FK_tamanho_1
-    FOREIGN KEY (fk_Produtos_id_produto)
-    REFERENCES Produtos (id_produto)
     ON DELETE CASCADE;
  
 ALTER TABLE ItemCompra ADD CONSTRAINT FK_ItemCompra_1
@@ -130,11 +96,12 @@ ALTER TABLE `categorias` CHANGE `id_categoria` `id_categoria` INT(11) NOT NULL A
 ALTER TABLE `clientes` CHANGE `id_cliente` `id_cliente` INT(11) NOT NULL AUTO_INCREMENT;
 ALTER TABLE `compra` CHANGE `id_compra` `id_compra` INT(11) NOT NULL AUTO_INCREMENT;
 ALTER TABLE `fornecedor` CHANGE `id_fornecedor` `id_fornecedor` INT(11) NOT NULL AUTO_INCREMENT;
-ALTER TABLE `imagem` CHANGE `id_imagem` `id_imagem` INT(11) NOT NULL AUTO_INCREMENT;
 ALTER TABLE `produtos` CHANGE `id_produto` `id_produto` INT(11) NOT NULL AUTO_INCREMENT;
-ALTER TABLE `transportadora` CHANGE `id_transportadora` `id_transportadora` INT(11) NOT NULL AUTO_INCREMENT;
 ALTER TABLE `vendedor` CHANGE `id_vendedor` `id_vendedor` INT(11) NOT NULL AUTO_INCREMENT;
 
-
-////////////////////////////////////////////////////////////////////////////////////////////////
 INSERT INTO `categorias` (`id_categoria`, `nm_categoria`) VALUES (NULL, 'chuteiras'), (NULL, 'bolas'), (NULL, 'camisas'), (NULL, 'conjuntos'), (NULL, 'acessorios');
+
+INSERT INTO fornecedor (id_fornecedor, nm_fornecedor, cnpj_fornecedor, atividade_fornecedor, cep_fornecedor, nro_fornecedor, telefone_fornecedor) values ('','NIKE INC','05.709.957/0001-25','empresa de calçados','98765-432','11','(11) 2334-8798'), ('','PUMA' ,'05.406.034/0022-2','Produtos esportivos','32432-423','123','(24) 32423-4234'), ('','KIPSTA','02.314.041/0008-54','Produtos esportivos','21312-312','44','(12) 31231-2333'), ('','WILSON','41.864.182/0001-26','Produtos esportivos','45345-345','443','(12) 31231-2435'),('','ARTENGO','68.756.756/7895-67','Produtos esportivos','43534-636','342','(45) 74685-4566'),('','ADIDAS' ,'42.274.696/0025-61','Produtos esportivos','45367-845','453','(84) 57697-4596'),('','UMBRO','01.287.588/0001-79','Produtos esportivos','11075-501','543','(11) 73498-5734'),('','PENALTY','08.979.452/0001-79','Produtos esportivos','58306-130','546','(11) 95876-8457');
+
+
+

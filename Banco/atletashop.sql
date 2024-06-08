@@ -16,7 +16,8 @@ CREATE TABLE Produtos (
     valor_prod float(10,2),
     nm_produto varchar(255),
     id_produto int(11) PRIMARY KEY,
-    Atributo_1 int(15),
+    qtd_produto int(15),
+    url_imagem varchar(100),
     fk_Categorias_id_categoria int(11),
     fk_Fornecedor_id_fornecedor int(11)
 );
@@ -24,12 +25,6 @@ CREATE TABLE Produtos (
 CREATE TABLE Categorias (
     id_categoria int(11) PRIMARY KEY,
     nm_categoria varchar(255)
-);
-
-CREATE TABLE Imagem (
-    id_imagem int(11) PRIMARY KEY,
-    url_imagem varchar(255),
-    fk_Produtos_id_produto int(11)
 );
 
 CREATE TABLE Vendedor (
@@ -71,11 +66,6 @@ ALTER TABLE Produtos ADD CONSTRAINT FK_Produtos_2
 ALTER TABLE Produtos ADD CONSTRAINT FK_Produtos_3
     FOREIGN KEY (fk_Fornecedor_id_fornecedor)
     REFERENCES Fornecedor (id_fornecedor)
-    ON DELETE CASCADE;
- 
-ALTER TABLE Imagem ADD CONSTRAINT FK_Imagem_2
-    FOREIGN KEY (fk_Produtos_id_produto)
-    REFERENCES Produtos (id_produto)
     ON DELETE CASCADE;
  
 ALTER TABLE Compra ADD CONSTRAINT FK_Compra_2

@@ -1,8 +1,8 @@
 <?php
 include_once ("../funcoes/banco.php");
 $bd = conectar();
-$id = filter_input(INPUT_GET,"id_imagem",FILTER_SANITIZE_SPECIAL_CHARS);
-$consulta = "select * from imagem i join produtos p on p.id_produto = i.fk_Produtos_id_produto join categorias c on p.fk_Categorias_id_categoria = c.id_categoria join fornecedor f on p.fk_Fornecedor_id_fornecedor = f.id_fornecedor where id_imagem = '$id'";
+$id = filter_input(INPUT_GET,"id_produto",FILTER_SANITIZE_SPECIAL_CHARS);
+$consulta = "select * from produtos p join categorias c on p.fk_Categorias_id_categoria = c.id_categoria join fornecedor f on p.fk_Fornecedor_id_fornecedor = f.id_fornecedor where id_produto = '$id'";
 $resultado = $bd->query($consulta);
 if($resultado->rowCount()==0){
     

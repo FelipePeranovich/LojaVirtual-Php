@@ -70,6 +70,13 @@
         ?> 
                     </select>
                 </div>
+                <div class="form-group">
+                    <label for="arquivo">Carregue a imagem aqui:</label>
+                    <input type="file" id="fileInput" name="arquivo">
+                    <div id="image-container">
+                        <span> Imagem será exibida aqui</span>
+                    </div>
+                </div>
                 
             </div>
             <div class="col-md-6">
@@ -105,16 +112,54 @@
     </form>    
 </div>
     <a href="imagens.php"><button type="button" class="btn btn-dark" >Editar imagem de produto existente</button></a>
-    <br>
-    <br>
-    <a href="novaimagem.php"><button type="button" class="btn btn-dark" >Adicionar imagem de produto já cadastro</button></a>
 
 <script>
     function limparCampos() {
         document.getElementById("produtoForm").reset();
     }
-</script>
+    //Código uploud imagem.
+    const fileInput = document.getElementById('fileInput');
+    const imageContainer = document.getElementById('image-container');
 
+        let file;
+
+        // Ao selecionar um arquivo
+        fileInput.addEventListener('change', (event) => {
+            file = event.target.files[0];
+        });
+
+        // Ao clicar fora do input de seleção
+        document.addEventListener('click', (event) => {
+            if (!fileInput.contains(event.target) && file) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    const img = document.createElement('img');
+                    img.src = e.target.result;
+
+                    // Limpa o container e adiciona a nova imagem
+                    imageContainer.innerHTML = '';
+                    imageContainer.appendChild(img);
+                }
+                reader.readAsDataURL(file);
+                file = null; // Reseta o arquivo para evitar múltiplos carregamentos
+            }
+        });
+</script>
+<style>
+  #image-container {
+            width: 150px;
+            height: 150px;
+            border: 2px dashed #ccc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+        #image-container img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+</style>
 </body>
 </html>
 

@@ -2,7 +2,7 @@
 <?php
   include_once ("../funcoes/banco.php");
   $bd = conectar();
-  $consulta ="SELECT * from imagem i join produtos p  on i.fk_Produtos_id_produto=p.id_produto and p.fk_Categorias_id_categoria=3";
+  $consulta ="SELECT * from produtos where fk_Categorias_id_categoria=3";
   $resultado = $bd->query($consulta);   
 ?>
 <html lang="pt-br">
@@ -69,6 +69,28 @@
       }
     ?> 
 </nav>
+<!--EXIBE OS  PORDUTOS-->
+<div class="product-grid p-3">
+<?php
+  while($res = $resultado->fetch()){
+    echo'<div class="product-card ">';
+      echo "<a href='../telas/produto.php?id_produto=".$res['id_produto']."'>";
+      echo '<form action="enviacarrinho.php" method="POST">';
+      echo'<img  src="'.$res["url_imagem"].'" alt="">';
+      echo '<p>'.$res["ds_produto"].'</p>';
+      echo '<p class="price">'."R$".$res["valor_prod"].",00".'</p>';
+      if($res["qtd_produto"] > 0){
+      echo '<p>Quantidade: '.$res["qtd_produto"].'</p>';
+      echo '<input type="submit" class="btn btn-primary" id="btn-addcarrinho" value="Adicionar ao Carrinho">';
+    }else{
+    echo '<p>ESGOTADO!</p>';
+  }
+    echo '</form>';
+    echo '</a>';
+    echo '</div>';
+  }
+?>
+</div>
 <!-- Login Form -->
 <div class="modal" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">

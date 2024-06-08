@@ -73,7 +73,7 @@ body {
 /*Estilo botao tela login*/
 
 #btn-entrar{
-    border-color: rgba(11, 47, 88, 0.95); ;
+    border-color: rgba(11, 47, 88, 0.95); 
     background-color: rgba(11, 47, 88, 0.95);    
 }
 
@@ -110,4 +110,57 @@ body {
 
 .modal-body a {
     color: rgba(11, 47, 88, 0.95)7bff; /* azul */
+}
+
+/* CSS PARA A VITRINE DE PRODUTOS*/
+.product-grid {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    flex-wrap: nowrap; /* Evita que os produtos quebrem para a próxima linha */
+    overflow-x: auto; /* Adiciona rolagem horizontal para o caso de muitos produtos */
+}
+
+.product-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    max-width: 200px;
+    padding: 1rem;
+    text-align: center;
+}
+
+.product-card img {
+    max-width: 100%;
+    border-radius: 5px;
+}
+
+.product-card h2 {
+    font-size: 1.5rem;
+    color: #333;
+}
+
+.product-card p {
+    color: #666;
+    font-size: 0.8rem;
+}
+
+.product-card .price {
+    font-size: 1.2rem;
+    color: #000000;
+    margin: 1rem 0;
+}
+
+.product-card button {
+    background-color: rgba(11, 47, 88, 0.95); 
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.product-card button:hover {
+    background-color: #555;
 }
