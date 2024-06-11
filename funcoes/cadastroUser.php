@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 $email = filter_input(INPUT_POST,"email",FILTER_SANITIZE_EMAIL);
 $senha = filter_input(INPUT_POST,"senha",FILTER_SANITIZE_SPECIAL_CHARS);
 $cpf = filter_input(INPUT_POST,"cpf",FILTER_SANITIZE_SPECIAL_CHARS);
@@ -22,9 +22,11 @@ $bd->beginTransaction();
         $bd->rollBack();
     }
     else {
-        $bd->commit();
-        $_SESSION['usuario'] = $login['nm_cliente'];
+        session_start();
+        $_SESSION['usuario'] = $nome;
         $_SESSION['permissao'] = "usuario";
+        $_SESSION['cpf'] = $cpf;
+        $bd->commit();       
     }
 
 $bd = null;

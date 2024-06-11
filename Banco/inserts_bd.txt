@@ -1,0 +1,40 @@
+
+ALTER TABLE `categorias` CHANGE `id_categoria` `id_categoria` INT(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `clientes` CHANGE `id_cliente` `id_cliente` INT(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `compra` CHANGE `id_compra` `id_compra` INT(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `fornecedor` CHANGE `id_fornecedor` `id_fornecedor` INT(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `produtos` CHANGE `id_produto` `id_produto` INT(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `vendedor` CHANGE `id_vendedor` `id_vendedor` INT(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `carrinho` CHANGE `id_carrinho` `id_carrinho` INT(15) NOT NULL AUTO_INCREMENT;
+
+INSERT INTO `categorias` (`id_categoria`, `nm_categoria`) VALUES (NULL, 'chuteira'), (NULL, 'bolas'), (NULL, 'camisas'), (NULL, 'conjuntos'), (NULL, 'acessorios');
+
+INSERT INTO fornecedor (id_fornecedor, nm_fornecedor, cnpj_fornecedor, atividade_fornecedor, cep_fornecedor, nro_fornecedor, telefone_fornecedor) values ('','NIKE INC','05.709.957/0001-25','empresa de calçados','98765-432','11','(11) 2334-8798'), ('','PUMA' ,'05.406.034/0022-2','Produtos esportivos','32432-423','123','(24) 32423-4234'), ('','KIPSTA','02.314.041/0008-54','Produtos esportivos','21312-312','44','(12) 31231-2333'), ('','WILSON','41.864.182/0001-26','Produtos esportivos','45345-345','443','(12) 31231-2435'),('','ARTENGO','68.756.756/7895-67','Produtos esportivos','43534-636','342','(45) 74685-4566'),('','ADIDAS' ,'42.274.696/0025-61','Produtos esportivos','45367-845','453','(84) 57697-4596'),('','UMBRO','01.287.588/0001-79','Produtos esportivos','11075-501','543','(11) 73498-5734'),('','PENALTY','08.979.452/0001-79','Produtos esportivos','58306-130','546','(11) 95876-8457');
+
+INSERT INTO `produtos`(`id_produto`, `ds_produto`, `valor_prod`, `nm_produto`, `qtd_produto`, `url_imagem`, `fk_Categorias_id_categoria`, `fk_Fornecedor_id_fornecedor`) 
+VALUES
+(11,"Chuteira Campo Umbro","149.90","Chuteira Umbro ","44","../imagens/campoUmbro.jpg","1","7"),
+(14,"Chuteira Nike Air","299.90","Chuteira Nike Air","26","../imagens/chuteira1.jpg","1","1"),
+(15,"Chuteira Puma Campo","299.90","chuteira puma","43","../imagens/chuteira2.jpg","1","2"),
+(16,"Chuteira Nike Campo","299.90","Chuteira Nike Campo","45","../imagens/chuteira3.jpg","1","1"),
+(17,"Chuteira Penalty Futsal","180.00","Chuteira Penalty","42","../imagens/chuteiraPenalty.jpg","1","8"),
+(18,"Chuteira Umbro Futsal","179.90","Chuteira Umbro Futsal","34","../imagens/chuteiraUmbro.jpg","1","7"),
+(20,"Chuteiruda do Homem Aranha","9999999.00","Chuteiruda","1","../imagens/chuteiruda.jpg","1","7"),
+(3,"Bola baseball Kipsta","90.00","Bola baseball","12","../imagens/basebol.jpg","2","3"),
+(4,"Bola de basquete WIlson Roxa","200.00","Bola basquete Wilson","4","../imagens/basqueteWillson.jpg","2","4"),
+(5,"Bola de TÃªnis Artengo","49.90","Bola de TÃªnis","45","../imagens/bolaDeTenis.jpg","2","5"),
+(6,"Bola futebol americano Kipsta","99.90","Boal futebol americano","17","../imagens/bolaKipsta.jpg","2","3"),
+(7,"Bola de basquete NBA","299.00","Bola basquete Wilson","24","../imagens/bolaNBA.jpg","2","4"),
+(8,"Bola playground Preta","129.90","Bola basquete nike","23","../imagens/BolaNike.jpg","2","1"),
+(9,"Bola campo nike","200.00","Bola futebol nike","23","../imagens/bolaNikeBranca.jpg","2","1"),
+(1,"Camisa Palmeiras","299.00","Camisa Palmeiras","25","../imagens/camisaPalmeiras.jpg","3","2"),
+(2,"Camisa Barcelona Preta","120.00","Camisa Barcelona Preta","52","../imagens/barcelona.jpg","3","1"),
+(10,"Camisa Brasil Masculina","299.00","Camisa Brasil","22","../imagens/brasil.jpg","3","1"),
+(21,"Camiseta City Masculina","200.00","Camiseta City","23","../imagens/city.jpg","3","2"),
+(31,"Camisa Inter de MilÃ£o","200.00","Camisa Inter de MilÃ£o","12","../imagens/interdemilao.jpg","3","1"),
+(37,"Camisa Barcelona Oficial","299.00","Camisa Barcelona","12","../imagens/barÃ§a.jpg","3","1"),
+(23,"Conjunto Adidas Azul","200.00","Conjunto Adidas azul","24","../imagens/conjuntoAdAzul.jpg","4","6"),
+(24,"Conjunto Adidas Rosa","200.00","Conjunto Adidas rosa","23","../imagens/conjuntoAdRosa.jpg","4","6"),
+(25,"Conjunto Arsenal","250.00","Conjunto arsenal","13","../imagens/conjuntoArsenal.jpg","4","6"),
+(26,"Conjunto Uniforme Brasil","250.00","Conjunto Uniforme Brasil","23","../imagens/conjuntoBR.jpg","4","1"),
+(28,"Conjunto Nike Azul ","200.00","Conjunto Azul Nike","12","../imagens/conjuntoNkAzul.jpg","4","1");

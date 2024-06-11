@@ -2,7 +2,7 @@
 <?php
   include_once ("../funcoes/banco.php");
   $bd = conectar();
-  $id = filter_input(INPUT_GET,"id_produto",FILTER_SANITIZE_SPECIAL_CHARS);
+  $id = filter_input(INPUT_POST,"id_produto",FILTER_SANITIZE_SPECIAL_CHARS);
   $consulta ="select * from produtos p join fornecedor f where id_produto = '$id' and p.fk_Fornecedor_id_fornecedor = f.id_fornecedor";
   $resultado = $bd->query($consulta); 
   $res = $resultado -> fetch();  
@@ -93,9 +93,7 @@
           </div>
           <button type="submit" class="btn btn-primary">Entrar</button>
         </form>
-        <p class="mt-3">Esqueceu sua senha? <a href="#" >Clique aqui</a></p>
-        <p>ou</p>
-        <p class="mt-3">Não tem cadastro? <a href="#" >Crie sua conta</a></p>
+        <p class="mt-3">Não tem cadastro? <a href="CriarCadastro.php" >Crie sua conta</a></p>
       </div>
     </div>
   </div>
@@ -109,16 +107,24 @@
       <img src="<?=$res["url_imagem"];?>" class="img-fluid" alt="Imagem do Produto">
     </div>
     <div class="col-md-6">
+    <form action="../funcoes/enviacarrinho.php" method="post">
       <h2><?=$res["nm_produto"];?></h2>
       <p><?=$res["ds_produto"];?></p>
       <p>Fornecido por: <?=$res["nm_fornecedor"];?></p>
       <p>Preço: R$<?=$res["valor_prod"];?></p>
-      <form>
         <div class="form-group d-flex align-items-center">
           <label for="quantidade">Quantidade:</label>
-          <input type="number" class="form-control ml-2 mr-2" id="quantidade" min="1" value="1" style="width: 70px;">
+          <input type="number" class="form-control ml-2 mr-2" name="quantidade" min="1" value="1" style="width: 70px;">
         </div>
-        <button type="submit" class="btn btn-primary btn-lg" id="btn-addcarrinho">Adicionar ao Carrinho</button>
+        <input type="hidden" name="produto" value="<?=$res['id_produto'];?>">
+        <input type="hidden" name="valor" value="<?=$res['valor_prod'];?>">
+        <?php
+        if(!empty($_SESSION['usuario'])){
+          echo'<button type="submit" class="btn btn-primary btn-lg" id="btn-addcarrinho">Adicionar ao Carrinho</button>';
+        }else{
+          echo '<div class="btn btn-primary btn-lg" style="background-color: rgba(11, 47, 88, 0.95)" id="carrinho">Adicionar ao Carrinho</div>';
+        }
+        ?>
       </form>
     </div>
   </div>
@@ -141,6 +147,18 @@
         modal.style.display = "none";
       }
     }
+    document.addEventListener('DOMContentLoaded', () => {
+    const alertIcon = document.getElementById('alert-icon');
+
+    alertIcon.addEventListener('click', () => {
+        alert('Para acessar está função é necessario fazer o login!');
+    });
+});
+var alerta = document.getElementById('carrinho');
+alerta.addEventListener('click',function(){
+  alert('Para acessar está função é necessario fazer o login!')
+} )
+    
  </script>
 
 </body>

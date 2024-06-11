@@ -2,5 +2,5 @@
     session_start();
     unset($_SESSION['usuario']);
     unset($_SESSION['permissao']);
-    header("location:../telas/index.php")
+    echo "<script>javascript:history.go(-1)</script>";
 ?>

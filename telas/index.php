@@ -1,5 +1,11 @@
 
 <!DOCTYPE html>
+<?php
+  $erro = filter_input(INPUT_GET,"erro");
+  if($erro == "login"){
+    echo '<script>alert("Usuário ou senha não indentificados")</script>';
+  }
+?>
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
@@ -58,7 +64,7 @@
     <?php
       if(!empty($_SESSION["usuario"])){            
         echo '<a class="navbar-logado p-3"  id="icone-logado" href="#"><img class="d-inline-block align-top" width="30" height="30" src="../imagens/iconelogado.png" alt="perfil"></a>';
-        echo '<h8 class="d-inline-block align-top" style="color:#fff">'.$_SESSION["usuario"].'</h8>'.'<a class ="nav-link" href="../funcoes/sair.php"><img class="d-inline-block align-top" width="20" height="20" src="../imagens/icon-sair.png" alt="sair"></a>';
+        echo '<h8 class="d-inline-block align-top" style="color:#fff">'.$_SESSION["usuario"].'</h8>'.'<a class ="nav-link" href="../funcoes/sair.php"><img class="d-inline-block align-top" width="20" height="20" src="../imagens/icon-sair.png" title="sair"></a>';
       }else{
         echo '<button id="btnlogin" class="btn btn-outline-light my-2 my-sm-0 ml-2">Login</button>'; 
       }

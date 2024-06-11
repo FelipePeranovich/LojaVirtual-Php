@@ -1,4 +1,26 @@
 <!DOCTYPE html>
+<?php
+  include_once ("../funcoes/banco.php");
+  $bd = conectar();
+  session_start();
+  //localiza o cliente
+  $cpf = $_SESSION['cpf'];
+  $verificaID = "select id_cliente from clientes where cpf_cliente = '$cpf'";
+  $respota = $bd->query($verificaID);
+  $resp = $respota->fetch();
+  $id_cliente = $resp['id_cliente'];
+  //busca os item no carrinho desse cliente
+  $consulta ="SELECT * from carrinho c join produtos p  on c.fk_Produtos_id_produto=p.id_produto join fornecedor f on p.fk_Fornecedor_id_fornecedor=f.id_fornecedor where p.fk_Categorias_id_categoria=$id_cliente";
+  $resultado = $bd->query($consulta); 
+  //soma o sub total dos pordutos selecionados
+  $verifica ='SELECT SUM(quantidade * valor) as total from carrinho c join produtos p on c.fk_Produtos_id_produto=p.id_produto where fk_Categorias_id_categoria='.$resp['id_cliente'].'';
+  $somar = $bd->query($verifica);
+  $total = $somar->fetch();
+  //informações do remuso do pedido
+  $subtotal = $total['total'];
+  $frete = 10;
+  $valorfinal = $subtotal + $frete
+?>
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
@@ -43,7 +65,6 @@
     
   </div>
   <?php
-  session_start();
   if(!empty($_SESSION["usuario"])){
     echo'<a class="navbar-carrinho" href="carrinho.php" id="btn-carrinho"><img class="d-inline-block align-top" width="30" height="30" src="../imagens/carrinho.png" alt="carrinho"></a>';
   }else{
@@ -57,7 +78,7 @@
     <?php
       if(!empty($_SESSION["usuario"])){            
         echo '<a class="navbar-logado p-3"  id="icone-logado" href="#"><img class="d-inline-block align-top" width="30" height="30" src="../imagens/iconelogado.png" alt="perfil"></a>';
-        echo '<h8 class="d-inline-block align-top" style="color:#fff">'.$_SESSION["usuario"].'</h8>'.'<a class ="nav-link" href="../funcoes/sair.php"><img class="d-inline-block align-top" width="20" height="20" src="../imagens/icon-sair.png" alt="sair"></a>';
+        echo '<h8 class="d-inline-block align-top" style="color:#fff">'.$_SESSION["usuario"].'</h8>'.'<a class ="nav-link" href="../funcoes/sair.php"><img class="d-inline-block align-top" width="20" height="20" src="../imagens/icon-sair.png" title="sair"></a>';
       }else{
         echo '<button id="btnlogin" class="btn btn-outline-light my-2 my-sm-0 ml-2">Login</button>'; 
       }
@@ -72,40 +93,54 @@
         <div class="col-md-8">
             <h2>Seu Carrinho</h2>
             <!-- Lista de produtos no carrinho -->
-            <div class="card mb-3">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-2">
-                            <!-- Imagem do produto -->
-                            <img src="../imagens/chuteira1.jpg" alt="Produto" class="img-fluid">
-                        </div>
-                        <div class="col-md-6">
-                            <!-- Informações do produto -->
-                            <h5 class="card-title">Nome do Produto</h5>
-                            <p class="card-text">Descrição do produto...</p>
-                        </div>
-                        <div class="col-md-2">
-                            <!-- Botão para excluir o produto do carrinho -->
-                            <button class="btn btn-danger"><i class="fas fa-trash"></i></button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+             <?php           
+             while($res = $resultado->fetch()){
+              $valorProd = $res['valor']; 
+              $qtdProd = $res['quantidade'];
+              $totalProd = $valorProd * $qtdProd;  
+            echo '<div class="card mb-3">';
+                echo '<form action="../funcoes/excluiItemCarrinho.php" method="POST">';
+                echo '<div class="card-body">';
+                echo  '<div class="row">';
+                echo    '<div class="col-md-2">';              
+                            echo '<img src="'.$res['url_imagem'].'" alt="Produto" class="img-fluid">';
+                            echo '</div>';
+                            echo '<div class="col-md-6">';
+                            echo '<h5 class="card-title">'.$res['nm_produto'].'</h5>';
+                            echo '<p class="card-text">'.$res['ds_produto'].'</p>';
+                            echo '<p class="card-text">Quantidade: '. $res['quantidade'].'</p>';
+                            echo '<p class="card-text">Valor do produto: R$ '.$totalProd.'</p>';
+                            echo '<p class="card-text">Vendido por: '. $res['nm_fornecedor'].'</p>';
+                            echo '</div>';
+                            echo '<div class="col-md-2">';   
+                            echo '<input type="hidden" name="id_carrinho" value="'.$res['id_carrinho'].'">';  
+                    echo '<input type="image" src="../imagens/botao-x.png" title="Remover item" alt="Submit" style="max-widht:32px; max-height:32px;">';
+                    echo '</div>';
+                    echo '</div>';
+                    echo '</div>';
+                    echo '</form>';
+                    echo '</div>';
+             }
+            ?>
             <!-- Repita esse bloco para cada produto no carrinho -->
         </div>
         <!-- Coluna do resumo do pedido e botão de finalizar compra -->
+         <form action="finalizaCompra.php" action="POST">
         <div class="col-md-4">
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Resumo do Pedido</h5>
                     <!-- Valor dos produtos -->
-                    <p>Subtotal: R$ 100,00</p>
+                    <p>Subtotal: R$ <?=$subtotal?></p>
                     <!-- Valor do frete -->
-                    <p>Frete: R$ 10,00</p>
+                    <p>Frete: R$ <?=$frete?></p>
                     <!-- Valor total -->
-                    <h4>Total: R$ 110,00</h4>
+                    <h4>Total: R$ <?=$valorfinal?></h4>
                     <!-- Botão de finalizar compra -->
-                    <button class="btn btn-primary btn-block" id="btn-finalizar" style="background-color: rgba(11,47,88,0.95)">Finalizar Compra</button>
+                     <?='<input type="hidden" name="id_carrinho" value="'.$res['id_carrinho'].'">';?>
+                     <?='<input type="hidden" name="id_cliente" value="'.$resp['id_cliente'].'">';?>
+                     <?='<input type="hidden" name="frete" value="'.$frete.'">';?>
+                    <button type="submit" class="btn btn-primary btn-block" id="btn-finalizar" style="background-color: rgba(11,47,88,0.95)">Finalizar Compra</button>
                 </div>
             </div>
         </div>

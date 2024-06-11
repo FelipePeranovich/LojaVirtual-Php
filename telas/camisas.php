@@ -63,7 +63,7 @@
     <?php
       if(!empty($_SESSION["usuario"])){            
         echo '<a class="navbar-logado p-3"  id="icone-logado" href="#"><img class="d-inline-block align-top" width="30" height="30" src="../imagens/iconelogado.png" alt="perfil"></a>';
-        echo '<h8 class="d-inline-block align-top" style="color:#fff">'.$_SESSION["usuario"].'</h8>'.'<a class ="nav-link" href="../funcoes/sair.php"><img class="d-inline-block align-top" width="20" height="20" src="../imagens/icon-sair.png" alt="sair"></a>';
+        echo '<h8 class="d-inline-block align-top" style="color:#fff">'.$_SESSION["usuario"].'</h8>'.'<a class ="nav-link" href="../funcoes/sair.php"><img class="d-inline-block align-top" width="20" height="20" src="../imagens/icon-sair.png" title="sair"></a>';
       }else{
         echo '<button id="btnlogin" class="btn btn-outline-light my-2 my-sm-0 ml-2">Login</button>'; 
       }
@@ -74,19 +74,18 @@
 <?php
   while($res = $resultado->fetch()){
     echo'<div class="product-card ">';
-      echo "<a href='../telas/produto.php?id_produto=".$res['id_produto']."'>";
-      echo '<form action="enviacarrinho.php" method="POST">';
+      echo '<form action="../telas/produto.php?" method="POST">';
       echo'<img  src="'.$res["url_imagem"].'" alt="">';
       echo '<p>'.$res["ds_produto"].'</p>';
       echo '<p class="price">'."R$".$res["valor_prod"].'</p>';
       if($res["qtd_produto"] > 0){
       echo '<p>Quantidade: '.$res["qtd_produto"].'</p>';
-      echo '<input type="submit" class="btn btn-primary" id="btn-addcarrinho" value="Adicionar ao Carrinho">';
+      echo'<input type="hidden" name="id_produto" value="'.$res['id_produto'].'">';
+      echo '<input type="submit" class="btn btn-primary" id="btn-addcarrinho" value="Ver Mais">';
     }else{
     echo '<p>ESGOTADO!</p>';
   }
     echo '</form>';
-    echo '</a>';
     echo '</div>';
   }
 ?>

@@ -1,4 +1,4 @@
-/* mer_atletashop: */
+/* mer_aletashop: */
 
 CREATE TABLE Clientes (
     id_cliente int(11) PRIMARY KEY,
@@ -38,7 +38,8 @@ CREATE TABLE Compra (
     valor_frete float(10,2),
     valor_comissao float(10,2),
     fk_Clientes_id_cliente int(11),
-    fk_Vendedor_id_vendedor int(11)
+    fk_Vendedor_id_vendedor int(11),
+    fk_carrinho_id_carrinho int(15)
 );
 
 CREATE TABLE Fornecedor (
@@ -51,11 +52,12 @@ CREATE TABLE Fornecedor (
     telefone_fornecedor varchar(15)
 );
 
-CREATE TABLE ItemCompra (
-    fk_Produtos_id_produto int(11),
-    fk_Compra_id_compra int(11),
+CREATE TABLE carrinho (
     quantidade int(11),
-    valor int(11)
+    valor int(11),
+    id_carrinho int(15) PRIMARY KEY,
+    fk_Produtos_id_produto int(11),
+    fk_Clientes_id_cliente int(11)
 );
  
 ALTER TABLE Produtos ADD CONSTRAINT FK_Produtos_2
@@ -78,12 +80,17 @@ ALTER TABLE Compra ADD CONSTRAINT FK_Compra_3
     REFERENCES Vendedor (id_vendedor)
     ON DELETE CASCADE;
  
-ALTER TABLE ItemCompra ADD CONSTRAINT FK_ItemCompra_1
+ALTER TABLE Compra ADD CONSTRAINT FK_Compra_4
+    FOREIGN KEY (fk_carrinho_id_carrinho)
+    REFERENCES carrinho (id_carrinho)
+    ON DELETE CASCADE;
+ 
+ALTER TABLE carrinho ADD CONSTRAINT FK_carrinho_2
     FOREIGN KEY (fk_Produtos_id_produto)
     REFERENCES Produtos (id_produto)
-    ON DELETE SET NULL;
+    ON DELETE CASCADE;
  
-ALTER TABLE ItemCompra ADD CONSTRAINT FK_ItemCompra_2
-    FOREIGN KEY (fk_Compra_id_compra)
-    REFERENCES Compra (id_compra)
-    ON DELETE SET NULL;
+ALTER TABLE carrinho ADD CONSTRAINT FK_carrinho_3
+    FOREIGN KEY (fk_Clientes_id_cliente)
+    REFERENCES Clientes (id_cliente)
+    ON DELETE RESTRICT;
