@@ -5,7 +5,7 @@
     $email = filter_input(INPUT_POST,"email",FILTER_SANITIZE_EMAIL);
     $senha = filter_input(INPUT_POST,"pass",FILTER_SANITIZE_SPECIAL_CHARS);
     
-    $sql = "SELECT nm_cliente,email_cliente,senha_cliente FROM `clientes` WHERE email_cliente='$email'";
+    $sql = "SELECT nm_cliente,email_cliente,senha_cliente,cpf_cliente FROM `clientes` WHERE email_cliente='$email'";
     $resultado = $bd->query($sql);       
     $login = $resultado->fetch();
     $senha_bd = $login['senha_cliente'];
@@ -17,8 +17,10 @@
     }else{
         unset($_SESSION["usuario"]);
         unset($_SESSION["permissao"]);
-        echo "<script>alert('Por favor, digite um email ou senha válido.');";
-        echo "javascript:history.go(-1)'</script>";
+        unset($_SESSION['cpf']); 
+        //echo "<script>alert('Por favor, digite um email ou senha válido.');";
+        //echo "javascript:history.go(-1)'</script>";
+        header("location:../telas/index.php?erro=login");
     }  
 $resultado = null;
 $bd = null;    

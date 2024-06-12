@@ -14,21 +14,33 @@ $bd = conectar();
 $sql = "insert into clientes (id_cliente, nm_cliente, cpf_cliente, telefone, cep, nro, email_cliente, senha_cliente) values "
 . "(NULL, '$nome', '$cpf', '$telefone', '$cep', $numero, '$email', '$senhaHash')";
 
+$verifica_cpf ="select * from clientes where cpf_cliente = '$cpf'";
+$res = $bd->query($verifica_cpf);
+if($res->rowCount()!=0){
+    echo "<script>alert('CPF INVÁLIDO! ESSE CPF JÁ POSSUI CADASTRO');javascript:history.go(-1)</script>";
+    die();
+}
+$verifica_email = "select * from clientes where email_cliente = '$email'";
+$teste = $bd->query($verifica_email);
+if($teste -> rowCount()!=0){
+    echo "<script>alert('EMAIL INVÁLIDO! ESSE EMAIL JÁ POSSUI CADASTRO');javascript:history.go(-1)</script>";
+    die();
+}
 $bd->beginTransaction();
 
-    $i = $bd->exec($sql);
-    
-    if ($i != 1){
-        $bd->rollBack();
-    }
+    $i = $bd->exec($sql);  
+        if ($i != 1){
+            $bd->rollBack();
+        }
     else {
         session_start();
         $_SESSION['usuario'] = $nome;
         $_SESSION['permissao'] = "usuario";
         $_SESSION['cpf'] = $cpf;
         $bd->commit();       
+        header("location:../telas/index.php");
     }
 
+
 $bd = null;
-header("location:../telas/index.php");
 ?>

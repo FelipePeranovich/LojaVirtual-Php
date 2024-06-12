@@ -12,6 +12,11 @@ $respota = $bd->query($verificaID);
 $resp = $respota->fetch();
 $id_cliente = $resp['id_cliente'];
 
+$consulta = "select nm_categoria from categorias c join produtos p on p.fk_Categorias_id_categoria=c.id_categoria where p.id_produto='$id'";
+$resultado = $bd->query($consulta);
+$res = $resultado->fetch();
+$pagina= $res['nm_categoria'];
+
 $sql="INSERT INTO `carrinho`(`quantidade`, `valor`, `id_carrinho`, `fk_Produtos_id_produto`, `fk_Clientes_id_cliente`) VALUES ('$quantidade','$valor','null','$id','$id_cliente')";
 
 $bd->beginTransaction();
@@ -28,9 +33,6 @@ $bd->beginTransaction();
         $bd->commit();
     }
 
-$consulta = "select nm_categoria from categorias c join produtos p on p.fk_Categorias_id_categoria=c.id_categoria where p.id_produto='$id'";
-$resultado = $bd->query($consulta);
-$res = $resultado->fetch();
-$pagina= $res['nm_categoria'];
+
 $bd = null;
-header("location:../telas/$pagina.php");
+header("location:../telas/carrinho.php");

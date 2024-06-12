@@ -56,8 +56,8 @@
     echo '<a class="navbar-carrinho" href="#" id="btnloginCarrinho"><img class="d-inline-block align-top" id="alert-icon" width="30" height="30" src="../imagens/carrinho.png" alt="carrinho"></a>'; 
   }
     ?>
-    <form class="form-inline my-2 my-lg-0 navbar-form">
-      <input class="form-control mr-sm-2" type="search" placeholder="Pesquisar" aria-label="Search">
+    <form class="form-inline my-2 my-lg-0 navbar-form" method="post" action="../funcoes/pesquisar.php">
+      <input class="form-control mr-sm-2" type="search" name="pesquisa" placeholder="Pesquisar" aria-label="Search">
       <button class="btn btn-outline-light my-2 my-sm-0 ml-2" type="submit">Pesquisar</button>
     </form>
     <?php
@@ -74,7 +74,7 @@
 <?php
   while($res = $resultado->fetch()){
     echo'<div class="product-card ">';
-      echo '<form action="../telas/produto.php?" method="POST">';
+    echo '<form action="../telas/produto.php?id="'.$res['id_produto'].'>';
       echo'<img  src="'.$res["url_imagem"].'" alt="">';
       echo '<p>'.$res["ds_produto"].'</p>';
       echo '<p class="price">'."R$".$res["valor_prod"].'</p>';

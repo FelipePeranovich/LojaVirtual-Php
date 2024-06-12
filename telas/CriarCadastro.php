@@ -44,8 +44,8 @@
     </ul> 
   </div>
   <a class="navbar-carrinho" href="carrinho.php" id="btn-carrinho"><img class="d-inline-block align-top" width="30" height="30" src="../imagens/carrinho.png" alt="carrinho"></a>
-    <form class="form-inline my-2 my-lg-0 navbar-form">
-      <input class="form-control mr-sm-2" type="search" placeholder="Pesquisar" aria-label="Search">
+  <form class="form-inline my-2 my-lg-0 navbar-form" method="post" action="../funcoes/pesquisar.php">
+      <input class="form-control mr-sm-2" type="search" name="pesquisa" placeholder="Pesquisar" aria-label="Search">
       <button class="btn btn-outline-light my-2 my-sm-0 ml-2" type="submit">Pesquisar</button>
     </form>
     <button id="btnlogin" class="btn btn-outline-light my-2 my-sm-0 ml-2">Login</button>

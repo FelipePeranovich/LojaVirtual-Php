@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cadastro de Produtos - Admin</title>
+  <title>Cadastro fornecedor - Admin</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <link rel="stylesheet" href="../estilo/styles.css">
@@ -59,8 +59,8 @@
             <div class="col-md-5">
                 <!-- Lado Direito -->
                 <div class="form-group">
-                    <label for="cepFornecedor">CEP:</label>
-                    <input type="text" class="form-control" name="cep" id="cep" placeholder="12345-678" maxlength="9" onkeyup="handleZipCode(event)" autofocus required> 
+                <label for="cep">CEP</label>
+                <input type="text" class="form-control" name="cep" id="cep" placeholder="12345-678" maxlength="9" onkeyup="handleZipCode(event)" autofocus required>
                 </div>
                 <div class="form-group">
                     <label for="numeroFornecedor">Número:</label>

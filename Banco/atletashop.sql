@@ -1,4 +1,4 @@
-/* mer_aletashop: */
+/* mer_atletashop: */
 
 CREATE TABLE Clientes (
     id_cliente int(11) PRIMARY KEY,
@@ -36,10 +36,10 @@ CREATE TABLE Compra (
     id_compra int(11) PRIMARY KEY,
     dt_compra date,
     valor_frete float(10,2),
-    valor_comissao float(10,2),
+    valor_compra float(10,2),
+    id_itens_comprados json,
     fk_Clientes_id_cliente int(11),
-    fk_Vendedor_id_vendedor int(11),
-    fk_carrinho_id_carrinho int(15)
+    fk_Vendedor_id_vendedor int(11)
 );
 
 CREATE TABLE Fornecedor (
@@ -78,11 +78,6 @@ ALTER TABLE Compra ADD CONSTRAINT FK_Compra_2
 ALTER TABLE Compra ADD CONSTRAINT FK_Compra_3
     FOREIGN KEY (fk_Vendedor_id_vendedor)
     REFERENCES Vendedor (id_vendedor)
-    ON DELETE CASCADE;
- 
-ALTER TABLE Compra ADD CONSTRAINT FK_Compra_4
-    FOREIGN KEY (fk_carrinho_id_carrinho)
-    REFERENCES carrinho (id_carrinho)
     ON DELETE CASCADE;
  
 ALTER TABLE carrinho ADD CONSTRAINT FK_carrinho_2

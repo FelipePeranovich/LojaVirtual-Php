@@ -2,10 +2,12 @@
 <?php
   include_once ("../funcoes/banco.php");
   $bd = conectar();
-  $id = filter_input(INPUT_POST,"id_produto",FILTER_SANITIZE_SPECIAL_CHARS);
+  $id = filter_input(INPUT_GET,"id_produto",FILTER_SANITIZE_SPECIAL_CHARS);
   $consulta ="select * from produtos p join fornecedor f where id_produto = '$id' and p.fk_Fornecedor_id_fornecedor = f.id_fornecedor";
   $resultado = $bd->query($consulta); 
   $res = $resultado -> fetch();  
+  $verificacao = "select * from carrinho where fk_Produtos_id_produto=$id";
+  $ver = $bd -> query($verificacao);
 ?>
 <html lang="pt-br">
 <head>
@@ -58,8 +60,8 @@
     echo '<a class="navbar-carrinho" href="#" ><img class="d-inline-block align-top" id="alert-icon" width="30" height="30" src="../imagens/carrinho.png" alt="carrinho"></a>'; 
   }
     ?>
-    <form class="form-inline my-2 my-lg-0 navbar-form">
-      <input class="form-control mr-sm-2" type="search" placeholder="Pesquisar" aria-label="Search">
+    <form class="form-inline my-2 my-lg-0 navbar-form" method="post" action="../funcoes/pesquisar.php">
+      <input class="form-control mr-sm-2" type="search" name="pesquisa" placeholder="Pesquisar" aria-label="Search">
       <button class="btn btn-outline-light my-2 my-sm-0 ml-2" type="submit">Pesquisar</button>
     </form>
     <?php
@@ -85,7 +87,7 @@
         <form action="../funcoes/login.php" method="post">
           <div class="form-group">
             <label for="exampleInputEmail1">Endereço de email:</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Seu email">
+            <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Seu email">
           </div>
           <div class="form-group">
             <label>Senha:</label>
@@ -99,12 +101,13 @@
   </div>
 </div>
 
+
 <!-- Compra produtos -->
 
 <div class="container mt-4">
   <div class="row">
     <div class="col-md-6">
-      <img src="<?=$res["url_imagem"];?>" class="img-fluid" alt="Imagem do Produto">
+      <img src="<?=$res["url_imagem"];?>" class="img-fluid" alt="Imagem do Produto" width="300" height="300">
     </div>
     <div class="col-md-6">
     <form action="../funcoes/enviacarrinho.php" method="post">
@@ -114,13 +117,17 @@
       <p>Preço: R$<?=$res["valor_prod"];?></p>
         <div class="form-group d-flex align-items-center">
           <label for="quantidade">Quantidade:</label>
-          <input type="number" class="form-control ml-2 mr-2" name="quantidade" min="1" value="1" style="width: 70px;">
+          <input type="number" class="form-control ml-2 mr-2" name="quantidade" min="1" max="<?=$res['qtd_produto']?>" value="1" style="width: 70px;">
         </div>
         <input type="hidden" name="produto" value="<?=$res['id_produto'];?>">
         <input type="hidden" name="valor" value="<?=$res['valor_prod'];?>">
         <?php
         if(!empty($_SESSION['usuario'])){
-          echo'<button type="submit" class="btn btn-primary btn-lg" id="btn-addcarrinho">Adicionar ao Carrinho</button>';
+          if($ver->rowCount()==0){
+              echo'<button type="submit" class="btn btn-primary btn-lg" id="btn-addcarrinho">Adicionar ao Carrinho</button>';
+          }else{
+            echo '<div class="btn btn-primary btn-lg" style="background-color: rgba(11, 47, 88, 0.95)" id="duplicado">Adicionar ao Carrinho</div>';
+          }
         }else{
           echo '<div class="btn btn-primary btn-lg" style="background-color: rgba(11, 47, 88, 0.95)" id="carrinho">Adicionar ao Carrinho</div>';
         }
@@ -157,6 +164,11 @@
 var alerta = document.getElementById('carrinho');
 alerta.addEventListener('click',function(){
   alert('Para acessar está função é necessario fazer o login!')
+} )
+
+var duplicado = document.getElementById('duplicado');
+duplicado.addEventListener('click',function(){
+  alert('Esse produto já está no carrinho!')
 } )
     
  </script>

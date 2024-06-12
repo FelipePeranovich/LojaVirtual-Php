@@ -2,7 +2,8 @@
 <?php
   include_once ("../funcoes/banco.php");
   $bd = conectar();
-  $consulta ="SELECT * from produtos where fk_Categorias_id_categoria=5";
+  $pesquisa = filter_input(INPUT_POST,"pesquisa",FILTER_SANITIZE_SPECIAL_CHARS);
+  $consulta ="SELECT * from produtos p join fornecedor f on  p.fk_Fornecedor_id_fornecedor = f.id_fornecedor where p.nm_produto LIKE '%".$pesquisa."%' OR p.ds_produto LIKE '%".$pesquisa."%' OR f.nm_fornecedor LIKE '%".$pesquisa."%'";
   $resultado = $bd->query($consulta);   
 ?>
 <html lang="pt-br">
@@ -31,7 +32,7 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" href="../telas/chuteira.php">Chuteiras</a>
+        <a class="nav-link" href="../telas/chuteira.php" >Chuteiras</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="../telas/bolas.php">Bolas</a>
@@ -43,7 +44,7 @@
         <a class="nav-link" href="../telas/conjuntos.php">Conjuntos</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="../telas/acessorios.php"id="ativo">Acessórios</a>
+        <a class="nav-link" href="../telas/acessorios.php">Acessórios</a>
       </li>
     </ul>
     
@@ -53,10 +54,10 @@
   if(!empty($_SESSION["usuario"])){
     echo'<a class="navbar-carrinho" href="carrinho.php" id="btn-carrinho"><img class="d-inline-block align-top" width="30" height="30" src="../imagens/carrinho.png" alt="carrinho"></a>';
   }else{
-    echo '<a class="navbar-carrinho" href="#" ><img class="d-inline-block align-top" id="alert-icon" width="30" height="30" src="../imagens/carrinho.png" alt="carrinho"></a>'; 
+    echo '<a class="navbar-carrinho" href="#" id="btnloginCarrinho"><img class="d-inline-block align-top" id="alert-icon" width="30" height="30" src="../imagens/carrinho.png" alt="carrinho"></a>'; 
   }
     ?>
-    <form class="form-inline my-2 my-lg-0 navbar-form" method="post" action="../funcoes/pesquisar.php">
+    <form class="form-inline my-2 my-lg-0 navbar-form" method="post" action="pesquisar.php">
       <input class="form-control mr-sm-2" type="search" name="pesquisa" placeholder="Pesquisar" aria-label="Search">
       <button class="btn btn-outline-light my-2 my-sm-0 ml-2" type="submit">Pesquisar</button>
     </form>
@@ -65,7 +66,7 @@
         echo '<a class="navbar-logado p-3"  id="icone-logado" href="#"><img class="d-inline-block align-top" width="30" height="30" src="../imagens/iconelogado.png" alt="perfil"></a>';
         echo '<h8 class="d-inline-block align-top" style="color:#fff">'.$_SESSION["usuario"].'</h8>'.'<a class ="nav-link" href="../funcoes/sair.php"><img class="d-inline-block align-top" width="20" height="20" src="../imagens/icon-sair.png" title="sair"></a>';
       }else{
-        echo '<button id="btnlogin" class="btn btn-outline-light my-2 my-sm-0 ml-2">Login</button>';  
+        echo '<button id="btnlogin" class="btn btn-outline-light my-2 my-sm-0 ml-2">Login</button>'; 
       }
     ?> 
 </nav>
@@ -74,7 +75,7 @@
 <?php
   while($res = $resultado->fetch()){
     echo'<div class="product-card ">';
-      echo '<form action="../telas/produto.php?id="'.$res['id_produto'].'>';
+      echo '<form action="../telas/produto.php?" method="POST">';
       echo'<img  src="'.$res["url_imagem"].'" alt="">';
       echo '<p>'.$res["ds_produto"].'</p>';
       echo '<p class="price">'."R$".$res["valor_prod"].'</p>';
