@@ -75,7 +75,7 @@
 <?php
   while($res = $resultado->fetch()){
     echo'<div class="product-card ">';
-      echo '<form action="../telas/produto.php?" method="POST">';
+    echo '<form action="../telas/produto.php?id="'.$res['id_produto'].'>';
       echo'<img  src="'.$res["url_imagem"].'" alt="">';
       echo '<p>'.$res["ds_produto"].'</p>';
       echo '<p class="price">'."R$".$res["valor_prod"].'</p>';

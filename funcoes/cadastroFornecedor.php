@@ -12,6 +12,12 @@ $bd = conectar();
 $sql = "INSERT INTO fornecedor (id_fornecedor, nm_fornecedor, cnpj_fornecedor, atividade_fornecedor, cep_fornecedor, nro_fornecedor, telefone_fornecedor) values "
 . "(NULL, '$nome', '$cnpj', '$atv', '$cep', $nro, '$telefone')";
 
+$verifica_cnpj ="select * from fornecedor where cnpj_fornecedor = '$cnpj'";
+$res = $bd->query($verifica_cnpj);
+if($res->rowCount()!=0){
+    echo "<script>alert('CNPJ INVÁLIDO! ESSE CNPJ JÁ POSSUI CADASTRO');javascript:history.go(-1)</script>";
+    die();
+}
 $bd->beginTransaction();
 
     $i = $bd->exec($sql);
