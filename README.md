@@ -1,6 +1,6 @@
 <div id="user-content-toc">
   <ul align="center">
-    <summary><h1 style="display: inline-block">Comércio Eletrônico Simplificadoo</h1></summary>
+    <summary><h1 style="display: inline-block">Comércio Eletrônico Simplificado</h1></summary>
 </div>
 <div>
     <ul aling="center">
