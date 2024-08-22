@@ -38,10 +38,10 @@
 </nav>
 </nav>
 
-<div class="container p-2">
+<div class="container mt-4">
     <form id="fornecedorForm" method="post" action="../funcoes/cadastroFornecedor.php">
         <div class="row">
-            <div class="col-md-5">
+            <div class="col-md-6">
             <!-- Lado Esquerdo -->
                 <div class="form-group">
                     <label for="nomeFornecedor">Nome do Fornecedor:</label>
@@ -55,8 +55,16 @@
                     <label for="atividadeFornecedor">Atividade:</label>
                     <input type="text" class="form-control" id="atividadeFornecedor" name="atividadeFornecedor" required>
                 </div>
+                <div class="form-group">
+                    <label for="">Cidade</label>
+                    <input type="text" readonly  class="form-control" id="cidade">
+                </div>
+                <div class="form-group">
+                    <label for="">UF</label>
+                    <input type="text" readonly class="form-control"  id="uf">
             </div>
-            <div class="col-md-5">
+            </div>
+            <div class="col-md-6">
                 <!-- Lado Direito -->
                 <div class="form-group">
                 <label for="cep">CEP</label>
@@ -70,23 +78,14 @@
                     <label for="telefoneFornecedor">Telefone:</label>
                     <input type="text" class="form-control" name="telefone" id="telefone" placeholder="Telefone para contato" maxlength="15" onkeyup="handlePhone(event)" required>
                 </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-4">
+                <div class="form-group">
                     <label for="">Logradouro</label>
                     <input type="text" readonly class="form-control" id="logradouro" value="">
                 </div>
-                <div class="form-group col-md-4 " >
+                <div class="form-group" >
                     <label for="">Bairro</label>
                     <input type="text" readonly class="form-control" id="bairro">
                 </div>
-                <div class="form-group col-md-4">
-                    <label for="">Cidade</label>
-                    <input type="text" readonly  class="form-control" id="cidade">
-                </div>
-                <div class="form-group col-md-2">
-                    <label for="">UF</label>
-                    <input type="text" readonly class="form-control"  id="uf">
             </div>
         </div>
         </div>

@@ -46,7 +46,7 @@ if($resultado->rowCount()==0){
                 <?php
                 echo'<label>Imagem Atual:</label>';
                 echo'<br>';
-                echo'<img  src="'.$for["url_imagem"].'" alt="">';
+                echo'<img id="image-container" src="'.$for["url_imagem"].'" alt="">';
                 ?>
                 <br>
                 <label for="arquivo">Carregue a nova imagem aqui:</label>
