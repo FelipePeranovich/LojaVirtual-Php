@@ -4,13 +4,12 @@
 </div>
 <div>
     <ul aling="center">
-    <h4>
-        Projeto desenvolvido durante o Curso de Análise desenvolvimento de sistamas (Fatec - Braguança Paulista), na matéria Linguagem de Programação IV (voltada para o desenvolvimento em Php),
+    <h7>
+        Projeto desenvolvido durante o Curso de Análise Desenvolvimento de Sistemas (Fatec - Bragança Paulista), na matéria Linguagem de Programação IV (voltada para o desenvolvimento em Php),
         que teve como intuito a manipulação do Banco de Dados e o desenvolvimento de funcionalidades por meio do Php.
-    </h4>
-      <h7>
+    </h7>
           <h3>Instruções do trabalho:</h3>
-          <h4>
+           <h7>
             <ul>
             <li>Desenvolver um site de comercio eletrônico simplificado. </li>
             <li>O site deverá receber informações dos clientes e produtos. </li>
@@ -23,28 +22,27 @@
             <li>Uma compra pode conter quantos itens (produtos) o cliente quiser, mas os produtos não podem se repetir, para venda de mais um uma unidade do mesmo item, alterar o valor no campo de quantidade. </li>
             <li>Uma compra só aceita um cliente.</li>
             <li>Os produtos e as imagens para ele serão informados pelo administrador do site que deverá acessar um link específico para isto, não constando o link na página de venda do site.</li>      
-          </h4>
       </h7>
 </div>
 <div>
   <ul aling="center">
     <h4>
-      Idéia do projeto:
+      Ideia do projeto:
     </h4>
     <h7>
-      O projeot teve como idéia a criação da loja virtual com a temática de produtos esportvios, a "AtletaShop". Conforme as intruções passadas o foco principal do trabalho era etender esses requisitos dentro dos conhecimentos passados em sala de aula.
+      O projeto teve como ideia a criação da loja virtual com a temática de produtos esportivos, a "AtletaShop". Conforme as instruções passadas o foco principal do trabalho era atender esses requisitos dentro dos conhecimentos passados em sala de aula.
     </h7>
     <h4>
       Observações:
     </h4>
     <h7>
       <ul>
-        <li>Para o inicio do projeto foi utlizado o Vscode e o Xampp</li>
-        <li>O banco de dados utilizado esta na pasta "Banco" onde tem os arquivos e os diagramas usados na criação</li>
-        <li>Para atender o requisito de imagem do produto, foi criado uma pasta com todas as imgens inicias do projeto com nome "imagens"</li>
-        <li>Para melhoras a organização os codigos também foram diferenciados em pastas, como "telas", "funções", "estilo" e "adm"</li>
-        <li>Para acessar a home utiliza do link "http://localhost/LojaVirtual-Php/telas/index.php"</li>
-        <li>Para acessar a área do Adm basta utlizar o Link "http://localhost/LojaVirtual-Php/adm/produto.php"</li>
+        <li>Para o início do projeto foi utilizado o Vscode e o Xampp</li>
+        <li>O banco de dados utilizado está na pasta "Banco" onde tem os arquivos e os diagramas usados na criação</li>
+        <li>Para atender o requisito de imagem do produto, foi criado uma pasta com todas as imagens inicias do projeto com nome "imagens"</li>
+        <li>Para melhoras a organização os códigos também foram diferenciados em pastas, como "telas", "funções", "estilo" e "adm"</li>
+        <li>Para acessar a home utilizar o link "http://localhost/LojaVirtual-Php/telas/index.php"</li>
+        <li>Para acessar a área do Adm basta utilizar o Link "http://localhost/LojaVirtual-Php/adm/produto.php"</li>
       </ul>
     </h7>
 </div>
