@@ -9,9 +9,9 @@
         que teve como intuito a manipulação do Banco de Dados e o desenvolvimento de funcionalidades por meio do Php.
     </h4>
       <h7>
-        <ul>
           <h3>Instruções do trabalho:</h3>
           <h4>
+            <ul>
             <li>Desenvolver um site de comercio eletrônico simplificado. </li>
             <li>O site deverá receber informações dos clientes e produtos. </li>
             <li>O cliente sempre acessará os produtos por meio de uma vitrine virtual ou catálogo. </li>
@@ -24,8 +24,29 @@
             <li>Uma compra só aceita um cliente.</li>
             <li>Os produtos e as imagens para ele serão informados pelo administrador do site que deverá acessar um link específico para isto, não constando o link na página de venda do site.</li>      
           </h4>
-        </ul>
       </h7>
+</div>
+<div>
+  <ul aling="center">
+    <h4>
+      Idéia do projeto:
+    </h4>
+    <h7>
+      O projeot teve como idéia a criação da loja virtual com a temática de produtos esportvios, a "AtletaShop". Conforme as intruções passadas o foco principal do trabalho era etender esses requisitos dentro dos conhecimentos passados em sala de aula.
+    </h7>
+    <h4>
+      Observações:
+    </h4>
+    <h7>
+      <ul>
+        <li>Para o inicio do projeto foi utlizado o Vscode e o Xampp</li>
+        <li>O banco de dados utilizado esta na pasta "Banco" onde tem os arquivos e os diagramas usados na criação</li>
+        <li>Para atender o requisito de imagem do produto, foi criado uma pasta com todas as imgens inicias do projeto com nome "imagens"</li>
+        <li>Para melhoras a organização os codigos também foram diferenciados em pastas, como "telas", "funções", "estilo" e "adm"</li>
+        <li>Para acessar a home utiliza do link "http://localhost/LojaVirtual-Php/telas/index.php"</li>
+        <li>Para acessar a área do Adm basta utlizar o Link "http://localhost/LojaVirtual-Php/adm/produto.php"</li>
+      </ul>
+    </h7>
 </div>
 <div style="flex-basis: 48%;">
   <h3>Tecnologias Utilizadas:</h3>
