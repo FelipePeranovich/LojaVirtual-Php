@@ -1,12 +1,12 @@
 <div id="user-content-toc">
   <ul align="center">
-    <summary><h1 style="display: inline-block">Comércio Eletrônico Simplificadoo</h1></summary>
+    <summary><h1 style="display: inline-block">Comércio Eletrônico Simplificado</h1></summary>
 </div>
 <div>
     <ul aling="center">
     <h4>
-        Projeto desenvolvido durante o Curso de Análise desinvolviemnto de sistamas (Fatec - Braguança Paulista), na matéria Linguagem de Programação IV (voltada para o desinvolvimento em Php),
-        que teve como intuito a manipulação do Banco de Dados e o desinvolvimento de funcionalidades por meio do Php.
+        Projeto desenvolvido durante o Curso de Análise desenvolvimento de sistamas (Fatec - Braguança Paulista), na matéria Linguagem de Programação IV (voltada para o desenvolvimento em Php),
+        que teve como intuito a manipulação do Banco de Dados e o desenvolvimento de funcionalidades por meio do Php.
     </h4>
       <h7>
         <ul>
